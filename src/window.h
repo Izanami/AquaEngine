@@ -14,10 +14,24 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "window.h"
+#ifndef AE_WINDOW_H_
+#define AE_WINDOW_H_
 
-int main() {
-    ae::Window window;
-    window.PoolEvent();
-    return 0;
-}
+namespace ae {
+
+class Window {
+   public:
+    Window();
+    virtual ~Window();
+
+    Window(const Window &) = delete;
+    Window(Window &&) = delete;
+    Window &operator=(const Window &) = delete;
+    Window &operator=(Window &&) = delete;
+
+    virtual bool PoolEvent();
+};
+
+} /* ae */
+
+#endif /* AE_WINDOW_H_ */
