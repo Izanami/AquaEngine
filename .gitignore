@@ -1,0 +1,8 @@
+ae-*
+lib*.a
+__pycache__
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+build/
