@@ -1,0 +1,29 @@
+image: debian:unstable
+
+stages:
+    - build
+    - test
+    - deploy
+
+before_script:
+    - apt-get -y update && apt-get -y upgrade
+    - apt-get -y install libvulkan-dev vulkan-utils libx11-xcb-dev libx11-xcb1 build-essential cmake
+
+build_job:
+  stage: build
+  script:
+    - cmake .
+    - make
+
+test_job:
+  stage: test
+  script:
+  - apt-get -y install libgtest-dev
+  - mkdir gtest
+  - cd gtest
+  - cmake /usr/src/gtest && make
+  - cp *.a /usr/lib
+  - cd ..
+  - cmake .
+  - make
+  - ./ae-test

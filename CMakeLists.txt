@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 set(CMAKE_BUILD_TYPE Release)
 PROJECT(AquaEngine)
 
+find_package (Threads)
 find_package(GTest)
 
 if(DEVEL)
@@ -45,7 +46,7 @@ if(GTEST_FOUND)
     include_directories(${GTEST_INCLUDE_DIRS})
 
     add_executable(ae-test src/test.cc src/window_test.cc)
-    target_link_libraries(ae-test ae ${GTEST_BOTH_LIBRARIES})
+    target_link_libraries(ae-test ae ${CMAKE_THREAD_LIBS_INIT} ${GTEST_BOTH_LIBRARIES})
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         set_target_properties(ae-test PROPERTIES COMPILE_FLAGS "-Wno-global-constructors -Wno-weak-vtables -Wno-used-but-marked-unused -Wno-missing-prototypes")
