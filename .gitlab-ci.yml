@@ -18,6 +18,7 @@ build_job:
 test_job:
   stage: test
   script:
+  - export DISPLAY=:1
   - apt-get -y install libgtest-dev
   - mkdir gtest
   - cd gtest
