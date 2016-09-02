@@ -11,6 +11,8 @@ GLFW::GLFW() {
     window_ = std::unique_ptr<GLFWwindow, window_deleter>(window);
 }
 
+GLFW::GLFW(GLFW&& glfw) : window_(std::move(glfw.window_)) {}
+
 bool GLFW::PoolEvent() {
     if (!glfwWindowShouldClose(window_.get())) {
         glfwPollEvents();

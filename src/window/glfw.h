@@ -32,9 +32,9 @@ class GLFW final : public Window {
     virtual ~GLFW() = default;
 
     GLFW(const GLFW &) = delete;
-    GLFW(GLFW &&) = delete;
+    GLFW(GLFW &&);
     GLFW &operator=(const GLFW &) = delete;
-    GLFW &operator=(GLFW &&) = delete;
+    GLFW &operator=(GLFW &&) = default;
 
     bool PoolEvent() override;
 

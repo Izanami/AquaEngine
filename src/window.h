@@ -17,6 +17,8 @@
 #ifndef AE_WINDOW_H_
 #define AE_WINDOW_H_
 
+#include <functional>
+
 namespace ae {
 
 class Window {
@@ -28,6 +30,7 @@ class Window {
     Window(Window &&) = delete;
     Window &operator=(const Window &) = delete;
     Window &operator=(Window &&) = delete;
+    static std::function<Window()> Create();
 
     virtual bool PoolEvent();
 
