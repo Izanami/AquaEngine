@@ -16,3 +16,4 @@ class WindowTest : public ::testing::Test {
 };
 
 TEST_F(WindowTest, PoolEvent) { ASSERT_FALSE(window->PoolEvent()); }
+TEST_F(WindowTest, Create) { Window::Create(); }

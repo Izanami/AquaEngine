@@ -17,7 +17,8 @@
 #include "window.h"
 
 int main() {
-    ae::Window window;
-    window.PoolEvent();
+    auto window = ae::Window::Create();
+    while (window->PoolEvent()) {
+    };
     return 0;
 }
