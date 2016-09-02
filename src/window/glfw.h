@@ -14,27 +14,38 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef AE_WINDOW_H_
-#define AE_WINDOW_H_
+#ifndef AE_WINDOW_GLFW_H_
+#define AE_WINDOW_GLFW_H_
+
+#include "../window.h"
+
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+
+#include <memory>
 
 namespace ae {
 
-class Window {
+class GLFW final : public Window {
    public:
-    Window() = default;
-    virtual ~Window() = default;
+    GLFW();
+    virtual ~GLFW() = default;
 
-    Window(const Window &) = delete;
-    Window(Window &&) = delete;
-    Window &operator=(const Window &) = delete;
-    Window &operator=(Window &&) = delete;
+    GLFW(const GLFW &) = delete;
+    GLFW(GLFW &&) = delete;
+    GLFW &operator=(const GLFW &) = delete;
+    GLFW &operator=(GLFW &&) = delete;
 
-    virtual bool PoolEvent();
+    bool PoolEvent() override;
 
-    const int kWidth = 800;
-    const int kHeight = 600;
+   private:
+    struct window_deleter {
+        void operator()(GLFWwindow *ptr);
+    };
+
+    std::unique_ptr<GLFWwindow, window_deleter> window_;
 };
 
 } /* ae */
 
-#endif /* AE_WINDOW_H_ */
+#endif /* AE_WINDOW_GLFW_H_ */

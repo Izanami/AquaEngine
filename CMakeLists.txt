@@ -23,8 +23,8 @@ endif()
 ###
 # MAIN
 ###
-add_library(ae src/ae.cc src/window.cc)
-target_link_libraries(ae vulkan xcb)
+add_library(ae src/ae.cc src/window.cc src/window/glfw.cc)
+target_link_libraries(ae vulkan xcb glfw)
 
 ###
 # DEMO
@@ -45,7 +45,7 @@ if(GTEST_FOUND)
     enable_testing()
     include_directories(${GTEST_INCLUDE_DIRS})
 
-    add_executable(ae-test src/test.cc src/window_test.cc)
+    add_executable(ae-test src/test.cc src/window_test.cc src/window/glfw_test.cc)
     target_link_libraries(ae-test ae ${CMAKE_THREAD_LIBS_INIT} ${GTEST_BOTH_LIBRARIES})
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
