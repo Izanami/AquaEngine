@@ -20,11 +20,24 @@ else()
     endif()
 endif()
 
+set(CMAKE_MODULE_PATH
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake"
+)
+
+##
+# Window
+##
+find_package(GLFW 3.0.0)
+
+if(GLFW_FOUND AND (GLFW_VERSION VERSION_EQUAL 3.0 OR GLFW_VERSION VERSION_GREATER 3.0))
+    add_definitions( -DGLFW_VERSION_3 )
+endif()
+
 ###
 # MAIN
 ###
 add_library(ae src/ae.cc src/window.cc src/window/glfw.cc)
-target_link_libraries(ae vulkan xcb glfw)
+target_link_libraries(ae vulkan ${GLFW_LIBRARIES})
 
 ###
 # DEMO
