@@ -7,7 +7,7 @@ stages:
 
 before_script:
     - apt-get -y update && apt-get -y upgrade
-    - apt-get -y install libvulkan-dev vulkan-utils libx11-xcb-dev libx11-xcb1 libglfw3-dev libxcursor-dev  libxinerama-dev build-essential cmake
+    - apt-get -y install libvulkan-dev vulkan-utils libx11-xcb-dev libx11-xcb1 libglfw3-dev libxcursor-dev  libxi-dev libxinerama-dev build-essential cmake
 
 build_job:
   stage: build
