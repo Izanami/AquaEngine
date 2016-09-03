@@ -15,6 +15,8 @@ class ApplicationTest : public ::testing::Test {
     std::unique_ptr<Application> application = nullptr;
 };
 
+TEST_F(ApplicationTest, Constructor) { Application("Foo"); }
+
 TEST_F(ApplicationTest, Name) {
     application->Name("Foo");
     ASSERT_STREQ(application->Name().c_str(), "Foo");

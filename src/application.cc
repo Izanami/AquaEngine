@@ -10,6 +10,12 @@ Application::Application() {
     vulkan_info_.apiVersion = VK_API_VERSION_1_0;
 }
 
+Application::Application(std::string name, int major, int minor, int patch)
+    : Application() {
+    Name(name);
+    Version(major, minor, patch);
+}
+
 Application::~Application() {}
 
 std::string Application::Name() const { return vulkan_info_.pApplicationName; }

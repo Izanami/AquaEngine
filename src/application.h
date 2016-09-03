@@ -24,6 +24,7 @@ namespace ae {
 struct Application {
    public:
     Application();
+    Application(std::string name, int major = 1, int minor = 0, int patch = 0);
     virtual ~Application();
 
     Application(const Application &) = delete;
