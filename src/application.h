@@ -18,6 +18,7 @@
 #define AE_APPLICATION_H_
 
 #include <vulkan/vulkan.h>
+#include <memory>
 #include <string>
 
 namespace ae {
@@ -39,8 +40,10 @@ struct Application {
     void Version(int);
     void Version(int major, int minor, int patch);
 
+    std::shared_ptr<VkApplicationInfo> Informations();
+
    private:
-    VkApplicationInfo vulkan_info_ = {};
+    std::shared_ptr<VkApplicationInfo> vulkan_info_ = nullptr;
 };
 } /* ae  */
 
