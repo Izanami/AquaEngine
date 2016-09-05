@@ -15,5 +15,6 @@ test_job:
   stage: test
   script:
   - export DISPLAY=:1
+  - cmake .
   - make
   - ./ae-test
