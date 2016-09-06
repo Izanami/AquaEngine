@@ -1,4 +1,5 @@
 #include "instance.h"
+#include "error.h"
 
 namespace ae {
 Instance::Instance() {
@@ -14,9 +15,11 @@ std::shared_ptr<VkInstance> Instance::Create() {
         Application(std::make_shared<ae::Application>());
     }
 
-    if (vkCreateInstance(vk_instance_informations_.get(), nullptr,
-                         vk_instance_.get()) != VK_SUCCESS) {
-        throw std::runtime_error("failed to create instance!");
+    auto result = vkCreateInstance(vk_instance_informations_.get(), nullptr,
+                                   vk_instance_.get());
+
+    if (result != VK_SUCCESS) {
+        throw std::runtime_error(error::Vulkan::to_str(result));
     }
 
     return vk_instance_;
