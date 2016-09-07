@@ -20,3 +20,5 @@ TEST_F(GLFWTest, PoolEvent) {
     GLFW window_move(std::move(*window.get()));
     ASSERT_TRUE(window_move.PoolEvent());
 }
+
+TEST_F(GLFWTest, Extensions) { ASSERT_GT(window->Extensions().size(), 0); }

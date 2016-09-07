@@ -1,5 +1,7 @@
 #include "glfw.h"
 
+#include <iostream>
+
 namespace ae {
 
 GLFW::GLFW() {
@@ -24,6 +26,14 @@ bool GLFW::PoolEvent() {
 
 void GLFW::window_deleter::operator()(GLFWwindow* ptr) {
     glfwDestroyWindow(ptr);
+}
+
+std::vector<std::string> GLFW::Extensions() {
+    uint32_t count = 0;
+    const char** extensions = nullptr;
+    extensions = glfwGetRequiredInstanceExtensions(&count);
+
+    return std::vector<std::string>(extensions, extensions + count);
 }
 
 } /* ae */

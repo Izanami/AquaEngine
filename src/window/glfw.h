@@ -23,6 +23,8 @@
 #include <GLFW/glfw3.h>
 
 #include <memory>
+#include <string>
+#include <vector>
 
 namespace ae {
 
@@ -37,6 +39,8 @@ class GLFW final : public Window {
     GLFW &operator=(GLFW &&) = default;
 
     bool PoolEvent() override;
+
+    static std::vector<std::string> Extensions();
 
    private:
     struct window_deleter {
