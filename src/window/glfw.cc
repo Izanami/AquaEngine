@@ -1,7 +1,5 @@
 #include "glfw.h"
 
-#include <iostream>
-
 namespace ae {
 
 GLFW::GLFW() {
