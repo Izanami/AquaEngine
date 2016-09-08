@@ -14,10 +14,20 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "application.h"
+#include "instance.h"
 #include "window.h"
 
 int main() {
+    auto application = std::make_shared<ae::Application>("Demo AquaEngine");
+
     auto window = ae::Window::Create();
+
+    ae::Instance instance;
+    instance.Application(application);
+    instance.AddExtensions(window->Extensions());
+    instance.Create();
+
     while (window->PoolEvent()) {
     };
     return 0;

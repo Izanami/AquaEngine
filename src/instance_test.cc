@@ -16,3 +16,10 @@ class InstanceTest : public ::testing::Test {
 };
 
 TEST_F(InstanceTest, Create) { instance->Create(); }
+
+TEST_F(InstanceTest, Extensions) {
+    std::vector<const char*> extensions = {"Foo", "Baz"};
+    instance->AddExtensions(extensions);
+
+    ASSERT_EQ(instance->Extensions(), extensions);
+}

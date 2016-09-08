@@ -19,6 +19,7 @@
 
 #include <vulkan/vulkan.h>
 #include <memory>
+#include <vector>
 #include "application.h"
 
 namespace ae {
@@ -36,10 +37,14 @@ class Instance final {
 
     void Application(std::shared_ptr<ae::Application>);
 
+    void AddExtensions(std::vector<const char *>);
+    std::vector<const char *> Extensions();
+
    private:
     std::shared_ptr<VkInstance> vk_instance_ = nullptr;
     std::shared_ptr<VkInstanceCreateInfo> vk_instance_informations_ = nullptr;
     std::shared_ptr<ae::Application> application_ = nullptr;
+    std::vector<const char *> extensions_;
 };
 } /* ae  */
 
