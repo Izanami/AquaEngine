@@ -23,10 +23,15 @@ namespace ae::error {
 
 class Vulkan final {
    public:
-    Vulkan();
-    virtual ~Vulkan();
+    Vulkan() = default;
+    virtual ~Vulkan() = default;
 
-    static constexpr const char* to_str(VkResult code) {
+    Vulkan(const Vulkan &) = delete;
+    Vulkan(Vulkan &&) = delete;
+    Vulkan &operator=(const Vulkan &) = delete;
+    Vulkan &operator=(Vulkan &&) = delete;
+
+    static constexpr const char *to_str(VkResult code) {
         switch (code) {
             case VK_SUCCESS:
                 return "Vulkan : Command successfully completed";
