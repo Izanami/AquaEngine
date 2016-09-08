@@ -22,10 +22,6 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-#include <memory>
-#include <string>
-#include <vector>
-
 namespace ae {
 
 class GLFW final : public Window {
@@ -40,7 +36,7 @@ class GLFW final : public Window {
 
     bool PoolEvent() override;
 
-    static std::vector<std::string> Extensions();
+    std::vector<const char *> Extensions() override;
 
    private:
     struct window_deleter {

@@ -16,4 +16,8 @@ std::unique_ptr<Window> Window::Create() {
 
 bool Window::PoolEvent() { return false; }
 
+std::vector<const char *> Window::Extensions() {
+    return std::vector<const char *>();
+}
+
 } /* ae */

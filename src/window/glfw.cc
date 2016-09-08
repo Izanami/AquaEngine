@@ -26,12 +26,12 @@ void GLFW::window_deleter::operator()(GLFWwindow* ptr) {
     glfwDestroyWindow(ptr);
 }
 
-std::vector<std::string> GLFW::Extensions() {
+std::vector<const char*> GLFW::Extensions() {
     uint32_t count = 0;
     const char** extensions = nullptr;
     extensions = glfwGetRequiredInstanceExtensions(&count);
 
-    return std::vector<std::string>(extensions, extensions + count);
+    return std::vector<const char*>(extensions, extensions + count);
 }
 
 } /* ae */

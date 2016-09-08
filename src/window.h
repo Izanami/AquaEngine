@@ -18,6 +18,7 @@
 #define AE_WINDOW_H_
 
 #include <memory>
+#include <vector>
 
 namespace ae {
 
@@ -33,6 +34,7 @@ class Window {
     static std::unique_ptr<Window> Create();
 
     virtual bool PoolEvent();
+    virtual std::vector<const char *> Extensions();
 
     const int kWidth = 800;
     const int kHeight = 600;
