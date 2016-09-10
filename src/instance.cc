@@ -34,7 +34,7 @@ std::shared_ptr<VkInstance> Instance::Create() {
 	throw std::runtime_error(error_message);
     }
 
-    if (result != VK_SUCCESS) {
+    else if (result != VK_SUCCESS) {
 	throw std::runtime_error(error::Vulkan::to_str(result));
     }
 
@@ -57,10 +57,10 @@ void Instance::AddExtensions(std::vector<const char *> extension) {
 std::vector<const char *> Instance::Extensions() { return extensions_; }
 
 std::vector<VkExtensionProperties> Instance::AvailableExtensions() {
-    uint32_t extensionCount = 0;
-    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-    std::vector<VkExtensionProperties> extensions(extensionCount);
-    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount,
+    uint32_t extension_count = 0;
+    vkEnumerateInstanceExtensionProperties(nullptr, &extension_count, nullptr);
+    std::vector<VkExtensionProperties> extensions(extension_count);
+    vkEnumerateInstanceExtensionProperties(nullptr, &extension_count,
 					   extensions.data());
     return extensions;
 }
@@ -86,6 +86,16 @@ std::vector<const char *> Instance::MissingExtensions() {
     }
 
     return missing_extensions;
+}
+
+std::vector<VkLayerProperties> Instance::AvailableValidations() {
+    uint32_t validations_count = 0;
+    vkEnumerateInstanceLayerProperties(&validations_count, nullptr);
+
+    std::vector<VkLayerProperties> validations(validations_count);
+    vkEnumerateInstanceLayerProperties(&validations_count, validations.data());
+
+    return validations;
 }
 
 } /* ae */

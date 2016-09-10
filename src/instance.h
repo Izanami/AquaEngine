@@ -25,6 +25,9 @@
 namespace ae {
 class Instance final {
    public:
+    const std::vector<const char *> kDefaultValidations = {
+        "VK_LAYER_LUNARG_standard_validation"};
+
     Instance();
     virtual ~Instance();
 
@@ -41,6 +44,8 @@ class Instance final {
     std::vector<const char *> Extensions();
     static std::vector<VkExtensionProperties> AvailableExtensions();
     std::vector<const char *> MissingExtensions();
+
+    std::vector<VkLayerProperties> AvailableValidations();
 
    private:
     std::shared_ptr<VkInstance> vk_instance_ = nullptr;

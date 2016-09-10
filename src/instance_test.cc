@@ -35,3 +35,7 @@ TEST_F(InstanceTest, MissingExtensions) {
 
     ASSERT_EQ(instance->MissingExtensions().size(), 2);
 }
+
+TEST_F(InstanceTest, AvailableValidation) {
+    ASSERT_GT(instance->AvailableValidations().size(), 0);
+}
