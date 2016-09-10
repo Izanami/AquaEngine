@@ -6,17 +6,19 @@
 
 namespace ae {
 
-std::unique_ptr<Window> Window::Create() {
 #ifdef GLFW_VERSION_3
-    return std::make_unique<GLFW>();
+using DefaultWindow = GLFW;
 #else
-    return std::make_unique<Window>();
+using DefaultWindow = Window;
 #endif
+
+std::unique_ptr<Window> Window::Create() noexcept {
+    return std::make_unique<DefaultWindow>();
 }
 
-bool Window::PoolEvent() { return false; }
+bool Window::PoolEvent() noexcept { return false; }
 
-std::vector<const char *> Window::Extensions() {
+std::vector<const char *> Window::extensions() const noexcept {
     return std::vector<const char *>();
 }
 

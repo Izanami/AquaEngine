@@ -1,3 +1,5 @@
+#ifdef GLFW_VERSION_3
+
 #include "glfw.h"
 #include <gtest/gtest.h>
 #include <memory>
@@ -21,4 +23,6 @@ TEST_F(GLFWTest, PoolEvent) {
     ASSERT_TRUE(window_move.PoolEvent());
 }
 
-TEST_F(GLFWTest, Extensions) { ASSERT_GT(window->Extensions().size(), 0); }
+TEST_F(GLFWTest, Extensions) { ASSERT_GT(window->extensions().size(), 0); }
+
+#endif

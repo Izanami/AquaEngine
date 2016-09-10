@@ -24,19 +24,20 @@
 
 namespace ae {
 
+// GLDW display
+// For more informations view Window class
 class GLFW final : public Window {
    public:
     GLFW();
     virtual ~GLFW() = default;
 
     GLFW(const GLFW &) = delete;
-    GLFW(GLFW &&);
     GLFW &operator=(const GLFW &) = delete;
     GLFW &operator=(GLFW &&) = default;
+    GLFW(GLFW &&);
 
-    bool PoolEvent() override;
-
-    std::vector<const char *> Extensions() override;
+    bool PoolEvent() noexcept override;
+    std::vector<const char *> extensions() const noexcept override;
 
    private:
     struct window_deleter {

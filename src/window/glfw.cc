@@ -13,7 +13,7 @@ GLFW::GLFW() {
 
 GLFW::GLFW(GLFW&& glfw) : window_(std::move(glfw.window_)) {}
 
-bool GLFW::PoolEvent() {
+bool GLFW::PoolEvent() noexcept {
     if (!glfwWindowShouldClose(window_.get())) {
         glfwPollEvents();
         return true;
@@ -26,7 +26,7 @@ void GLFW::window_deleter::operator()(GLFWwindow* ptr) {
     glfwDestroyWindow(ptr);
 }
 
-std::vector<const char*> GLFW::Extensions() {
+std::vector<const char*> GLFW::extensions() const noexcept {
     uint32_t count = 0;
     const char** extensions = nullptr;
     extensions = glfwGetRequiredInstanceExtensions(&count);

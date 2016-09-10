@@ -31,7 +31,7 @@ DemoApp::DemoApp() : ae::Application() {
     auto window = ae::Window::Create();
 
     ae::Instance instance;
-    instance.AddExtensions(window->Extensions());
+    instance.AddExtensions(window->extensions());
     instance.Create();
 
     while (window->PoolEvent()) {
