@@ -45,6 +45,8 @@ class Instance final {
     static std::vector<VkExtensionProperties> AvailableExtensions();
     std::vector<const char *> MissingExtensions();
 
+    std::vector<const char *> validations() const noexcept;
+    void AddValidations(const std::vector<const char *>) noexcept;
     std::vector<VkLayerProperties> AvailableValidations();
 
    private:
@@ -52,6 +54,7 @@ class Instance final {
     std::shared_ptr<VkInstanceCreateInfo> vk_instance_informations_ = nullptr;
     std::shared_ptr<ae::Application> application_ = nullptr;
     std::vector<const char *> extensions_;
+    std::vector<const char *> validations_;
 };
 } /* ae  */
 

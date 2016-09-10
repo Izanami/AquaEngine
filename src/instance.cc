@@ -88,6 +88,16 @@ std::vector<const char *> Instance::MissingExtensions() {
     return missing_extensions;
 }
 
+std::vector<const char *> Instance::validations() const noexcept {
+    return validations_;
+}
+
+void Instance::AddValidations(
+    const std::vector<const char *> validations) noexcept {
+    validations_.insert(std::end(validations_), std::begin(validations),
+			std::end(validations));
+}
+
 std::vector<VkLayerProperties> Instance::AvailableValidations() {
     uint32_t validations_count = 0;
     vkEnumerateInstanceLayerProperties(&validations_count, nullptr);
