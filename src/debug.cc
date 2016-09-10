@@ -14,4 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-int main() { return 0; }
+#include <iostream>
+#include "instance.h"
+
+int main() {
+    std::cout << "Available extensions:" << std::endl;
+    for (auto extension : ae::Instance::AvailableExtensions()) {
+        std::cout << "\t" << extension.extensionName << std::endl;
+    }
+    return 0;
+}
