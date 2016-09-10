@@ -20,6 +20,18 @@ TEST_F(InstanceTest, Create) { instance->Create(); }
 TEST_F(InstanceTest, Extensions) {
     std::vector<const char*> extensions = {"Foo", "Baz"};
     instance->AddExtensions(extensions);
-
     ASSERT_EQ(instance->Extensions(), extensions);
+}
+
+TEST_F(InstanceTest, AvailableExtensions) {
+    ASSERT_GT(instance->AvailableExtensions().size(), 0);
+}
+
+TEST_F(InstanceTest, MissingExtensions) {
+    ASSERT_EQ(instance->MissingExtensions().size(), 0);
+
+    std::vector<const char*> extensions = {"Foo", "Baz"};
+    instance->AddExtensions(extensions);
+
+    ASSERT_EQ(instance->MissingExtensions().size(), 2);
 }

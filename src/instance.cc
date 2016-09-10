@@ -1,6 +1,9 @@
 #include "instance.h"
 #include "error.h"
 
+#include <string.h>
+#include <algorithm>
+
 namespace ae {
 Instance::Instance() {
     vk_instance_ = std::make_shared<VkInstance>();
@@ -22,6 +25,16 @@ std::shared_ptr<VkInstance> Instance::Create() {
 	static_cast<uint32_t>(extensions_.size());
     vk_instance_informations_->ppEnabledExtensionNames = extensions_.data();
 
+    if (result == VK_ERROR_EXTENSION_NOT_PRESENT) {
+	std::string error_message = error::Vulkan::to_str(result);
+	error_message += " :";
+	for (const auto &extension : MissingExtensions()) {
+	    error_message += " ";
+	    error_message += extension;
+	}
+	throw std::runtime_error(error_message);
+    }
+
     if (result != VK_SUCCESS) {
 	throw std::runtime_error(error::Vulkan::to_str(result));
     }
@@ -37,11 +50,43 @@ void Instance::Application(std::shared_ptr<ae::Application> application) {
 	application->Informations().get();
 }
 
-void Instance::AddExtensions(std::vector<const char*> extension) {
+void Instance::AddExtensions(std::vector<const char *> extension) {
     extensions_.insert(std::end(extensions_), std::begin(extension),
 		       std::end(extension));
 }
 
-std::vector<const char*> Instance::Extensions() { return extensions_; }
+std::vector<const char *> Instance::Extensions() { return extensions_; }
+
+std::vector<VkExtensionProperties> Instance::AvailableExtensions() {
+    uint32_t extensionCount = 0;
+    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+    std::vector<VkExtensionProperties> extensions(extensionCount);
+    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount,
+					   extensions.data());
+    return extensions;
+}
+
+std::vector<const char *> Instance::MissingExtensions() {
+    /* Keep only name from AvailableExtensions() */
+    auto available_extensions = AvailableExtensions();
+    std::vector<const char *> available_extensions_name(
+	available_extensions.size());
+
+    for (const auto &extension : available_extensions) {
+	available_extensions_name.push_back(std::move(extension.extensionName));
+    }
+
+    /* Dismatch between AvailableExtensions and Extensions */
+    std::vector<const char *> missing_extensions;
+    for (const auto &extension : extensions_) {
+	auto result = std::find(std::begin(available_extensions_name),
+				std::end(available_extensions_name), extension);
+	if (result == std::end(available_extensions_name)) {
+	    missing_extensions.push_back(extension);
+	}
+    }
+
+    return missing_extensions;
+}
 
 } /* ae */

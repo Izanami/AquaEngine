@@ -39,6 +39,8 @@ class Instance final {
 
     void AddExtensions(std::vector<const char *>);
     std::vector<const char *> Extensions();
+    static std::vector<VkExtensionProperties> AvailableExtensions();
+    std::vector<const char *> MissingExtensions();
 
    private:
     std::shared_ptr<VkInstance> vk_instance_ = nullptr;
