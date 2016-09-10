@@ -1,8 +1,7 @@
 #include "instance.h"
-#include "error.h"
-
 #include <string.h>
 #include <algorithm>
+#include "error.h"
 
 namespace ae {
 Instance::Instance() {
@@ -47,7 +46,7 @@ void Instance::Application(std::shared_ptr<ae::Application> application) {
 
     // Get information from Application class
     vk_instance_informations_->pApplicationInfo =
-	application->Informations().get();
+	application->informations().get();
 }
 
 void Instance::AddExtensions(std::vector<const char *> extension) {

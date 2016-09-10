@@ -37,7 +37,7 @@ endif()
 ###
 # MAIN
 ###
-add_library(ae src/ae.cc src/window.cc src/window/glfw.cc src/application.cc src/instance.cc)
+add_library(ae src/window.cc src/window/glfw.cc src/application.cc src/instance.cc)
 target_link_libraries(ae vulkan ${GLFW_LIBRARIES})
 
 ###

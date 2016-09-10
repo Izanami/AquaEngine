@@ -22,25 +22,47 @@
 #include <string>
 
 namespace ae {
+
+// Shared information for application
+//  Example :
+//
+// struct MyApp : public ae::Application {
+//    MyApp();
+//    virtual ~MyApp();
+// };
+//
+// MyApp::MyApp() : ae::Application() {
+//    set_name("My application");
+//    set_version(1, 0, 0);
+//    auto window = ae::Window::Create();
+//
+//    while (window->PoolEvent()) {
+//    };
+// }
+//
+// MyApp::~MyApp() {}
+//
+//
+//  MyApp();
+//
 struct Application {
    public:
     Application();
-    Application(std::string name, int major = 1, int minor = 0, int patch = 0);
     virtual ~Application();
 
     Application(const Application &) = delete;
-    Application(Application &&) = delete;
     Application &operator=(const Application &) = delete;
     Application &operator=(Application &&) = delete;
+    Application(Application &&) = delete;
 
-    std::string Name() const;
-    void Name(std::string);
+    std::string name() const noexcept;
+    void set_name(std::string) noexcept;
 
-    int Version() const;
-    void Version(int);
-    void Version(int major, int minor, int patch);
+    int version() const noexcept;
+    void set_version(int) noexcept;
+    void set_version(int major, int minor, int patch) noexcept;
 
-    std::shared_ptr<VkApplicationInfo> Informations();
+    const std::shared_ptr<VkApplicationInfo> informations() const noexcept;
 
    private:
     std::shared_ptr<VkApplicationInfo> vulkan_info_ = nullptr;

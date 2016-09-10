@@ -15,14 +15,14 @@ class ApplicationTest : public ::testing::Test {
     std::unique_ptr<Application> application = nullptr;
 };
 
-TEST_F(ApplicationTest, Constructor) { Application("Foo"); }
-
 TEST_F(ApplicationTest, Name) {
-    application->Name("Foo");
-    ASSERT_STREQ(application->Name().c_str(), "Foo");
+    application->set_name("Foo");
+    ASSERT_STREQ(application->name().c_str(), "Foo");
 }
 
 TEST_F(ApplicationTest, Version) {
-    application->Version(1, 1, 1);
-    ASSERT_EQ(application->Version(), MakeVersion(1, 1, 1));
+    application->set_version(1, 1, 1);
+    ASSERT_EQ(application->version(), MakeVersion(1, 1, 1));
 }
+
+TEST_F(ApplicationTest, Informations) { application->informations(); }

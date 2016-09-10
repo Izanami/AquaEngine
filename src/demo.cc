@@ -18,17 +18,29 @@
 #include "instance.h"
 #include "window.h"
 
-int main() {
-    auto application = std::make_shared<ae::Application>("Demo AquaEngine");
+namespace {
+struct DemoApp : public ae::Application {
+    DemoApp();
+    virtual ~DemoApp();
+};
+
+DemoApp::DemoApp() : ae::Application() {
+    set_name("Demo AquaEngine");
+    set_version(1, 0, 0);
 
     auto window = ae::Window::Create();
 
     ae::Instance instance;
-    instance.Application(application);
     instance.AddExtensions(window->Extensions());
     instance.Create();
 
     while (window->PoolEvent()) {
     };
+}
+DemoApp::~DemoApp() {}
+}
+
+int main() {
+    DemoApp();
     return 0;
 }

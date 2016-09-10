@@ -11,33 +11,30 @@ Application::Application() {
     vulkan_info_->apiVersion = VK_API_VERSION_1_0;
 }
 
-Application::Application(std::string name, int major, int minor, int patch)
-    : Application() {
-    Name(name);
-    Version(major, minor, patch);
-}
-
 Application::~Application() {}
 
-std::string Application::Name() const { return vulkan_info_->pApplicationName; }
+std::string Application::name() const noexcept {
+    return vulkan_info_->pApplicationName;
+}
 
-void Application::Name(std::string name) {
+void Application::set_name(std::string name) noexcept {
     vulkan_info_->pApplicationName = name.c_str();
 }
 
-int Application::Version() const {
+int Application::version() const noexcept {
     return static_cast<int>(vulkan_info_->applicationVersion);
 }
 
-void Application::Version(int version) {
+void Application::set_version(int version) noexcept {
     vulkan_info_->applicationVersion = static_cast<uint32_t>(version);
 }
 
-void Application::Version(int major, int minor, int patch) {
-    Version(MakeVersion(major, minor, patch));
+void Application::set_version(int major, int minor, int patch) noexcept {
+    set_version(MakeVersion(major, minor, patch));
 }
 
-std::shared_ptr<VkApplicationInfo> Application::Informations() {
+const std::shared_ptr<VkApplicationInfo> Application::informations() const
+    noexcept {
     return vulkan_info_;
 }
 
