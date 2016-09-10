@@ -59,8 +59,9 @@ struct Application {
     void set_name(std::string) noexcept;
 
     int version() const noexcept;
-    void set_version(int) noexcept;
-    void set_version(int major, int minor, int patch) noexcept;
+    void set_version(const int) noexcept;
+    void set_version(const int major, const int minor,
+                     const int patch) noexcept;
 
     const std::shared_ptr<VkApplicationInfo> informations() const noexcept;
 
@@ -69,7 +70,7 @@ struct Application {
 };
 } /* ae  */
 
-constexpr int MakeVersion(int major, int minor, int patch) {
+constexpr int MakeVersion(const int major, const int minor, const int patch) {
     return (((major) << 22) | ((minor) << 12) | (patch));
 }
 

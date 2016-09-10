@@ -25,11 +25,12 @@ int Application::version() const noexcept {
     return static_cast<int>(vulkan_info_->applicationVersion);
 }
 
-void Application::set_version(int version) noexcept {
+void Application::set_version(const int version) noexcept {
     vulkan_info_->applicationVersion = static_cast<uint32_t>(version);
 }
 
-void Application::set_version(int major, int minor, int patch) noexcept {
+void Application::set_version(const int major, const int minor,
+                              const int patch) noexcept {
     set_version(MakeVersion(major, minor, patch));
 }
 
