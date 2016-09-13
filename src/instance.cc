@@ -49,14 +49,17 @@ void Instance::Application(std::shared_ptr<ae::Application> application) {
 	application->informations().get();
 }
 
-void Instance::AddExtensions(std::vector<const char *> extension) {
+void Instance::AddExtensions(std::vector<const char *> extension) noexcept {
     extensions_.insert(std::end(extensions_), std::begin(extension),
 		       std::end(extension));
 }
 
-std::vector<const char *> Instance::Extensions() { return extensions_; }
+std::vector<const char *> Instance::extensions() const noexcept {
+    return extensions_;
+}
 
-std::vector<VkExtensionProperties> Instance::AvailableExtensions() {
+std::vector<VkExtensionProperties> Instance::AvailableExtensions() const
+    noexcept {
     uint32_t extension_count = 0;
     vkEnumerateInstanceExtensionProperties(nullptr, &extension_count, nullptr);
     std::vector<VkExtensionProperties> extensions(extension_count);
@@ -65,17 +68,22 @@ std::vector<VkExtensionProperties> Instance::AvailableExtensions() {
     return extensions;
 }
 
-std::vector<const char *> Instance::MissingExtensions() {
-    /* Keep only name from AvailableExtensions() */
+std::vector<const char *> Instance::AvailableExtensionsName() const noexcept {
     auto available_extensions = AvailableExtensions();
-    std::vector<const char *> available_extensions_name(
-	available_extensions.size());
+    std::vector<const char *> available_extensions_name;
+    available_extensions_name.reserve(available_extensions.size());
 
     for (const auto &extension : available_extensions) {
 	available_extensions_name.push_back(std::move(extension.extensionName));
     }
 
-    /* Dismatch between AvailableExtensions and Extensions */
+    return available_extensions_name;
+}
+
+std::vector<const char *> Instance::MissingExtensions() const noexcept {
+    auto available_extensions_name = AvailableExtensionsName();
+
+    /* Dismatch between AvailableExtensionsName and Extensions */
     std::vector<const char *> missing_extensions;
     for (const auto &extension : extensions_) {
 	auto result = std::find(std::begin(available_extensions_name),
@@ -98,7 +106,7 @@ void Instance::AddValidations(
 			std::end(validations));
 }
 
-std::vector<VkLayerProperties> Instance::AvailableValidations() {
+std::vector<VkLayerProperties> Instance::AvailableValidations() const noexcept {
     uint32_t validations_count = 0;
     vkEnumerateInstanceLayerProperties(&validations_count, nullptr);
 
@@ -106,6 +114,36 @@ std::vector<VkLayerProperties> Instance::AvailableValidations() {
     vkEnumerateInstanceLayerProperties(&validations_count, validations.data());
 
     return validations;
+}
+
+std::vector<const char *> Instance::AvailableValidationsName() const noexcept {
+    auto available_validations = AvailableValidations();
+    std::vector<const char *> available_validations_name;
+    available_validations_name.reserve(available_validations.size());
+
+    for (const auto &valisation : available_validations) {
+	available_validations_name.push_back(std::move(valisation.layerName));
+    }
+
+    return available_validations_name;
+}
+
+std::vector<const char *> Instance::MissingValidations() const noexcept {
+    auto available_validations_name = AvailableValidationsName();
+
+    std::vector<const char *> missing_validations;
+
+    for (const auto &validation : validations_) {
+	auto result =
+	    std::find(std::begin(available_validations_name),
+		      std::end(available_validations_name), validation);
+
+	if (result == std::end(available_validations_name)) {
+	    missing_validations.push_back(validation);
+	}
+    }
+
+    return missing_validations;
 }
 
 } /* ae */

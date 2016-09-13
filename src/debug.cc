@@ -19,7 +19,7 @@
 
 int main() {
     std::cout << "Available extensions:" << std::endl;
-    for (auto extension : ae::Instance::AvailableExtensions()) {
+    for (auto extension : ae::Instance().AvailableExtensions()) {
         std::cout << "\t" << extension.extensionName << std::endl;
     }
     return 0;

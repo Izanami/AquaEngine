@@ -20,11 +20,16 @@ TEST_F(InstanceTest, Create) { instance->Create(); }
 TEST_F(InstanceTest, Extensions) {
     std::vector<const char*> extensions = {"Foo", "Baz"};
     instance->AddExtensions(extensions);
-    ASSERT_EQ(instance->Extensions(), extensions);
+    ASSERT_EQ(instance->extensions(), extensions);
 }
 
 TEST_F(InstanceTest, AvailableExtensions) {
     ASSERT_GT(instance->AvailableExtensions().size(), 0);
+}
+
+TEST_F(InstanceTest, ExtensionsName) {
+    ASSERT_EQ(instance->AvailableExtensionsName().size(),
+              instance->AvailableExtensions().size());
 }
 
 TEST_F(InstanceTest, MissingExtensions) {
@@ -40,8 +45,23 @@ TEST_F(InstanceTest, Validations) {
     std::vector<const char*> validations = {"Foo", "Baz"};
     instance->AddValidations(validations);
     ASSERT_EQ(instance->validations(), validations);
+    ASSERT_EQ(instance->validations().size(), 2);
 }
 
 TEST_F(InstanceTest, AvailableValidation) {
     ASSERT_GT(instance->AvailableValidations().size(), 0);
+}
+
+TEST_F(InstanceTest, ValidationsName) {
+    ASSERT_EQ(instance->AvailableValidationsName().size(),
+              instance->AvailableValidations().size());
+}
+
+TEST_F(InstanceTest, MissingValidations) {
+    ASSERT_EQ(instance->MissingValidations().size(), 0);
+
+    std::vector<const char*> validations = {"Foo", "Baz"};
+    instance->AddValidations(validations);
+
+    ASSERT_EQ(instance->MissingValidations().size(), 2);
 }

@@ -40,14 +40,17 @@ class Instance final {
 
     void Application(std::shared_ptr<ae::Application>);
 
-    void AddExtensions(std::vector<const char *>);
-    std::vector<const char *> Extensions();
-    static std::vector<VkExtensionProperties> AvailableExtensions();
-    std::vector<const char *> MissingExtensions();
+    void AddExtensions(std::vector<const char *>) noexcept;
+    std::vector<const char *> extensions() const noexcept;
+    std::vector<VkExtensionProperties> AvailableExtensions() const noexcept;
+    std::vector<const char *> AvailableExtensionsName() const noexcept;
+    std::vector<const char *> MissingExtensions() const noexcept;
 
     std::vector<const char *> validations() const noexcept;
     void AddValidations(const std::vector<const char *>) noexcept;
-    std::vector<VkLayerProperties> AvailableValidations();
+    std::vector<VkLayerProperties> AvailableValidations() const noexcept;
+    std::vector<const char *> AvailableValidationsName() const noexcept;
+    std::vector<const char *> MissingValidations() const noexcept;
 
    private:
     std::shared_ptr<VkInstance> vk_instance_ = nullptr;
