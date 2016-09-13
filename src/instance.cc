@@ -49,7 +49,8 @@ void Instance::Application(std::shared_ptr<ae::Application> application) {
 	application->informations().get();
 }
 
-void Instance::AddExtensions(std::vector<const char *> extension) noexcept {
+void Instance::AddExtensions(
+    const std::vector<const char *> &extension) noexcept {
     extensions_.insert(std::end(extensions_), std::begin(extension),
 		       std::end(extension));
 }
@@ -101,7 +102,7 @@ std::vector<const char *> Instance::validations() const noexcept {
 }
 
 void Instance::AddValidations(
-    const std::vector<const char *> validations) noexcept {
+    const std::vector<const char *> &validations) noexcept {
     validations_.insert(std::end(validations_), std::begin(validations),
 			std::end(validations));
 }
