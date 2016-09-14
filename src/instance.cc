@@ -16,14 +16,20 @@ std::shared_ptr<VkInstance> Instance::Create() {
 	Application(std::make_shared<ae::Application>());
     }
 
-    vk_instance_informations_->enabledExtensionCount =
-	static_cast<uint32_t>(extensions_.size());
-    vk_instance_informations_->ppEnabledExtensionNames = extensions_.data();
-
     if (MissingValidations().size() > 0)
 	throw std::runtime_error("Vulkan missing validations");
 
     AddDefaultValidations();
+
+    if (validations_.size() > 0) {
+	std::vector<const char *> extensions_validations = {
+	    VK_EXT_DEBUG_REPORT_EXTENSION_NAME};
+	AddExtensions(extensions_validations);
+    }
+
+    vk_instance_informations_->enabledExtensionCount =
+	static_cast<uint32_t>(extensions_.size());
+    vk_instance_informations_->ppEnabledExtensionNames = extensions_.data();
 
     vk_instance_informations_->enabledLayerCount =
 	static_cast<uint32_t>(validations_.size());
@@ -127,9 +133,9 @@ std::vector<VkLayerProperties> Instance::AvailableValidations() const noexcept {
 }
 
 void Instance::AddDefaultValidations() noexcept {
-    if (enable_default_validations) {
-	AddValidations(kDefaultValidations);
-    }
+    // if (enable_default_validations) {
+    AddValidations(kDefaultValidations);
+    //}
 }
 
 std::vector<const char *> Instance::AvailableValidationsName() const noexcept {
