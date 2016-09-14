@@ -20,6 +20,9 @@ std::shared_ptr<VkInstance> Instance::Create() {
 	static_cast<uint32_t>(extensions_.size());
     vk_instance_informations_->ppEnabledExtensionNames = extensions_.data();
 
+    if (MissingValidations().size() > 0)
+	throw std::runtime_error("Vulkan missing validations");
+
     AddDefaultValidations();
 
     vk_instance_informations_->enabledLayerCount =
