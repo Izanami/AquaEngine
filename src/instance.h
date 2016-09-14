@@ -28,6 +28,12 @@ class Instance final {
     const std::vector<const char *> kDefaultValidations = {
         "VK_LAYER_LUNARG_standard_validation"};
 
+#ifdef NDEBUG
+    bool enable_default_validations = false;
+#else
+    bool enable_default_validations = true;
+#endif
+
     Instance();
     virtual ~Instance();
 
@@ -48,6 +54,7 @@ class Instance final {
 
     std::vector<const char *> validations() const noexcept;
     void AddValidations(const std::vector<const char *> &) noexcept;
+    void AddDefaultValidations() noexcept;
     std::vector<VkLayerProperties> AvailableValidations() const noexcept;
     std::vector<const char *> AvailableValidationsName() const noexcept;
     std::vector<const char *> MissingValidations() const noexcept;

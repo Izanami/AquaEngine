@@ -45,7 +45,7 @@ namespace ae {
 //
 //  MyApp();
 //
-struct Application {
+class Application {
    public:
     Application();
     virtual ~Application();

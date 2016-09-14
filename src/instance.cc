@@ -7,7 +7,6 @@ namespace ae {
 Instance::Instance() {
     vk_instance_ = std::make_shared<VkInstance>();
     vk_instance_informations_ = std::make_shared<VkInstanceCreateInfo>();
-
     vk_instance_informations_->sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 }
 Instance::~Instance() {}
@@ -17,13 +16,20 @@ std::shared_ptr<VkInstance> Instance::Create() {
 	Application(std::make_shared<ae::Application>());
     }
 
-    auto result = vkCreateInstance(vk_instance_informations_.get(), nullptr,
-				   vk_instance_.get());
-
     vk_instance_informations_->enabledExtensionCount =
 	static_cast<uint32_t>(extensions_.size());
     vk_instance_informations_->ppEnabledExtensionNames = extensions_.data();
 
+    AddDefaultValidations();
+
+    vk_instance_informations_->enabledLayerCount =
+	static_cast<uint32_t>(validations_.size());
+    vk_instance_informations_->ppEnabledLayerNames = validations_.data();
+
+    auto result = vkCreateInstance(vk_instance_informations_.get(), nullptr,
+				   vk_instance_.get());
+
+    /* Handle errors */
     if (result == VK_ERROR_EXTENSION_NOT_PRESENT) {
 	std::string error_message = error::Vulkan::to_str(result);
 	error_message += " :";
@@ -117,13 +123,19 @@ std::vector<VkLayerProperties> Instance::AvailableValidations() const noexcept {
     return validations;
 }
 
+void Instance::AddDefaultValidations() noexcept {
+    if (enable_default_validations) {
+	AddValidations(kDefaultValidations);
+    }
+}
+
 std::vector<const char *> Instance::AvailableValidationsName() const noexcept {
     auto available_validations = AvailableValidations();
     std::vector<const char *> available_validations_name;
     available_validations_name.reserve(available_validations.size());
 
-    for (const auto &valisation : available_validations) {
-	available_validations_name.push_back(std::move(valisation.layerName));
+    for (const auto &validation : available_validations) {
+	available_validations_name.push_back(std::move(validation.layerName));
     }
 
     return available_validations_name;

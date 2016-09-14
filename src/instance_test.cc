@@ -65,3 +65,8 @@ TEST_F(InstanceTest, MissingValidations) {
 
     ASSERT_EQ(instance->MissingValidations().size(), 2);
 }
+
+TEST_F(InstanceTest, DefaultValidations) {
+    instance->AddDefaultValidations();
+    ASSERT_GT(instance->validations().size(), 0);
+}
