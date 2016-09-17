@@ -27,11 +27,7 @@ class Instance {
     const std::vector<const char *> kDefaultValidations = {
         "VK_LAYER_LUNARG_standard_validation"};
 
-#ifndef NDEBUG
-    bool enable_default_validations = false;
-#else
     bool enable_default_validations = true;
-#endif
 
     Instance();
     virtual ~Instance();

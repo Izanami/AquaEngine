@@ -3,6 +3,12 @@
 #include <algorithm>
 #include "error.h"
 
+#if defined(__has_feature)
+#if __has_feature(address_sanitizer)
+#define DISCARD
+#endif
+#endif
+
 namespace ae {
 Instance::Instance() {
     vk_instance_informations_->sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -22,13 +28,10 @@ VkResult Instance::Create() noexcept {
 	static_cast<uint32_t>(extensions_.size());
     vk_instance_informations_->ppEnabledExtensionNames = extensions_.data();
 
-#if defined(__has_feature)
-#if __has_feature(address_sanitizer)
-#else
+#ifndef DISCARD
     vk_instance_informations_->enabledLayerCount =
 	static_cast<uint32_t>(validations_.size());
     vk_instance_informations_->ppEnabledLayerNames = validations_.data();
-#endif
 #endif
 
     auto result = vkCreateInstance(vk_instance_informations_.get(), nullptr,
@@ -96,19 +99,17 @@ void Instance::AddValidations(
 }
 
 std::vector<VkLayerProperties> Instance::AvailableValidations() const noexcept {
-#if defined(__has_feature)
-#if __has_feature(address_sanitizer)
+#ifdef DISCARD
     std::vector<VkLayerProperties> validations;
+    return validations;
 #else
     uint32_t validations_count = 0;
     vkEnumerateInstanceLayerProperties(&validations_count, nullptr);
 
     std::vector<VkLayerProperties> validations(validations_count);
     vkEnumerateInstanceLayerProperties(&validations_count, validations.data());
-#endif
-#endif
-
     return validations;
+#endif
 }
 
 void Instance::AddDefaultValidations() noexcept {

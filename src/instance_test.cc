@@ -2,6 +2,12 @@
 #include <gtest/gtest.h>
 #include <memory>
 
+#if defined(__has_feature)
+#if __has_feature(address_sanitizer)
+#define DISCARD
+#endif
+#endif
+
 using namespace ae;
 
 static_assert(std::is_default_constructible<Instance>::value);
@@ -49,12 +55,10 @@ TEST_F(InstanceTest, Validations) {
 }
 
 TEST_F(InstanceTest, AvailableValidation) {
-#if defined(__has_feature)
-#if __has_feature(address_sanitizer)
-    ASSERT_EQ(instance->AvailableValidations().size(), 0);
-#else
+#ifndef DISCARD
     ASSERT_GT(instance->AvailableValidations().size(), 0);
-#endif
+#else
+    ASSERT_EQ(instance->AvailableValidations().size(), 0);
 #endif
 }
 
