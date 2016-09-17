@@ -49,7 +49,13 @@ TEST_F(InstanceTest, Validations) {
 }
 
 TEST_F(InstanceTest, AvailableValidation) {
+#if defined(__has_feature)
+#if __has_feature(address_sanitizer)
+    ASSERT_EQ(instance->AvailableValidations().size(), 0);
+#else
     ASSERT_GT(instance->AvailableValidations().size(), 0);
+#endif
+#endif
 }
 
 TEST_F(InstanceTest, ValidationsName) {

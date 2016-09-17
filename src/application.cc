@@ -4,7 +4,7 @@ namespace ae {
 Application::Application() {
     vulkan_info_->sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     vulkan_info_->pApplicationName = "";
-    vulkan_info_->applicationVersion = VK_MAKE_VERSION(1, 0, 0);
+    vulkan_info_->applicationVersion = VK_MAKE_VERSION(1, 0, 26);
     vulkan_info_->pEngineName = "AquaEngine";
     vulkan_info_->engineVersion = VK_MAKE_VERSION(1, 0, 0);
     vulkan_info_->apiVersion = VK_API_VERSION_1_0;
