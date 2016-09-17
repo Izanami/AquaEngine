@@ -20,15 +20,14 @@
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <vector>
-#include "application.h"
 
 namespace ae {
-class Instance final {
+class Instance {
    public:
     const std::vector<const char *> kDefaultValidations = {
         "VK_LAYER_LUNARG_standard_validation"};
 
-#ifdef NDEBUG
+#ifndef NDEBUG
     bool enable_default_validations = false;
 #else
     bool enable_default_validations = true;
@@ -42,9 +41,7 @@ class Instance final {
     Instance &operator=(const Instance &) = delete;
     Instance &operator=(Instance &&) = delete;
 
-    std::shared_ptr<VkInstance> Create();
-
-    void Application(std::shared_ptr<ae::Application>);
+    VkResult Create() noexcept;
 
     std::vector<const char *> extensions() const noexcept;
     void AddExtensions(const std::vector<const char *> &) noexcept;
@@ -60,9 +57,9 @@ class Instance final {
     std::vector<const char *> MissingValidations() const noexcept;
 
    private:
-    std::shared_ptr<VkInstance> vk_instance_ = nullptr;
-    std::shared_ptr<VkInstanceCreateInfo> vk_instance_informations_ = nullptr;
-    std::shared_ptr<ae::Application> application_ = nullptr;
+    std::shared_ptr<VkInstance> vk_instance_ = std::make_shared<VkInstance>();
+    std::shared_ptr<VkInstanceCreateInfo> vk_instance_informations_ =
+        std::make_shared<VkInstanceCreateInfo>();
     std::vector<const char *> extensions_;
     std::vector<const char *> validations_;
 };

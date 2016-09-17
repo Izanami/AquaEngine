@@ -5,20 +5,11 @@
 
 namespace ae {
 Instance::Instance() {
-    vk_instance_ = std::make_shared<VkInstance>();
-    vk_instance_informations_ = std::make_shared<VkInstanceCreateInfo>();
     vk_instance_informations_->sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 }
-Instance::~Instance() {}
+Instance::~Instance() { vkDestroyInstance(*vk_instance_.get(), nullptr); }
 
-std::shared_ptr<VkInstance> Instance::Create() {
-    if (application_ == nullptr) {
-	Application(std::make_shared<ae::Application>());
-    }
-
-    if (MissingValidations().size() > 0)
-	throw std::runtime_error("Vulkan missing validations");
-
+VkResult Instance::Create() noexcept {
     AddDefaultValidations();
 
     if (validations_.size() > 0) {
@@ -38,30 +29,7 @@ std::shared_ptr<VkInstance> Instance::Create() {
     auto result = vkCreateInstance(vk_instance_informations_.get(), nullptr,
 				   vk_instance_.get());
 
-    /* Handle errors */
-    if (result == VK_ERROR_EXTENSION_NOT_PRESENT) {
-	std::string error_message = error::Vulkan::to_str(result);
-	error_message += " :";
-	for (const auto &extension : MissingExtensions()) {
-	    error_message += " ";
-	    error_message += extension;
-	}
-	throw std::runtime_error(error_message);
-    }
-
-    else if (result != VK_SUCCESS) {
-	throw std::runtime_error(error::Vulkan::to_str(result));
-    }
-
-    return vk_instance_;
-}
-
-void Instance::Application(std::shared_ptr<ae::Application> application) {
-    application_ = application;
-
-    // Get information from Application class
-    vk_instance_informations_->pApplicationInfo =
-	application->informations().get();
+    return result;
 }
 
 void Instance::AddExtensions(
@@ -133,9 +101,9 @@ std::vector<VkLayerProperties> Instance::AvailableValidations() const noexcept {
 }
 
 void Instance::AddDefaultValidations() noexcept {
-    // if (enable_default_validations) {
-    AddValidations(kDefaultValidations);
-    //}
+    if (enable_default_validations) {
+	AddValidations(kDefaultValidations);
+    }
 }
 
 std::vector<const char *> Instance::AvailableValidationsName() const noexcept {

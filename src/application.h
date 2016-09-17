@@ -20,31 +20,39 @@
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <string>
+#include "error/vulkan.h"
+#include "instance.h"
 
 namespace ae {
 
-// Shared information for application
 //  Example :
-//
-// struct MyApp : public ae::Application {
-//    MyApp();
-//    virtual ~MyApp();
-// };
-//
-// MyApp::MyApp() : ae::Application() {
-//    set_name("My application");
-//    set_version(1, 0, 0);
-//    auto window = ae::Window::Create();
-//
-//    while (window->PoolEvent()) {
-//    };
-// }
-//
-// MyApp::~MyApp() {}
-//
-//
-//  MyApp();
-//
+/*
+struct DemoApp : public ae::Application {
+    DemoApp();
+    virtual ~DemoApp();
+
+   protected:
+    std::shared_ptr<ae::error::Vulkan> error_vulkan_ =
+        std::make_shared<ae::error::Vulkan>();
+    std::shared_ptr<ae::Instance> instance_ = std::make_shared<ae::Instance>();
+    std::unique_ptr<ae::Window> window_ = ae::Window::Create();
+};
+
+DemoApp::DemoApp() : ae::Application() {
+    set_name("Demo AquaEngine");
+    set_version(1, 0, 0);
+    error_vulkan_->set_instance(instance_);
+    instance_->AddExtensions(window_->extensions());
+
+    error_vulkan_->set_result(instance_->Create());
+    if (error_vulkan_->IsError()) throw error_vulkan_->Message();
+
+    while (window_->PoolEvent()) {
+    };
+}
+DemoApp::~DemoApp() {}
+*/
+
 class Application {
    public:
     Application();
@@ -66,7 +74,8 @@ class Application {
     const std::shared_ptr<VkApplicationInfo> informations() const noexcept;
 
    private:
-    std::shared_ptr<VkApplicationInfo> vulkan_info_ = nullptr;
+    std::shared_ptr<VkApplicationInfo> vulkan_info_ =
+        std::make_shared<VkApplicationInfo>();
 };
 } /* ae  */
 

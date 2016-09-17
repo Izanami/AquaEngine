@@ -2,7 +2,6 @@
 
 namespace ae {
 Application::Application() {
-    vulkan_info_ = std::make_shared<VkApplicationInfo>();
     vulkan_info_->sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     vulkan_info_->pApplicationName = "";
     vulkan_info_->applicationVersion = VK_MAKE_VERSION(1, 0, 0);
@@ -38,5 +37,4 @@ const std::shared_ptr<VkApplicationInfo> Application::informations() const
     noexcept {
     return vulkan_info_;
 }
-
 } /* ae */

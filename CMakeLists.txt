@@ -8,7 +8,7 @@ find_package(GTest)
 if(DEVEL)
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall --pedantic -pedantic-errors -Wdocumentation --std=c++1z -Weverything -Werror -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -g -fsanitize=address -fsanitize=leak -O0 ")
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall --pedantic -pedantic-errors -Wdocumentation --std=c++1z -Weverything -Werror -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -g -fsanitize=leak -O0 ")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall --pedantic -pedantic-errors -Wdocumentation --std=c++1z -Weverything -Werror -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -g -O0 -fsanitize=address -fno-omit-frame-pointer ")
     else()
         message( FATAL_ERROR "In devel mode, you must use clang." )
     endif()
@@ -37,7 +37,7 @@ endif()
 ###
 # MAIN
 ###
-add_library(ae src/window.cc src/window/glfw.cc src/application.cc src/instance.cc)
+add_library(ae src/window.cc src/window/glfw.cc src/application.cc src/instance.cc src/error.cc src/error/flags.cc src/error/vulkan.cc)
 target_link_libraries(ae vulkan ${GLFW_LIBRARIES})
 
 ###
@@ -59,7 +59,7 @@ if(GTEST_FOUND)
     enable_testing()
     include_directories(${GTEST_INCLUDE_DIRS})
 
-    add_executable(ae-test src/test.cc src/window_test.cc src/window/glfw_test.cc src/application_test.cc src/instance_test.cc src/error_test.cc)
+    add_executable(ae-test src/test.cc src/window_test.cc src/window/glfw_test.cc src/application_test.cc src/instance_test.cc src/error_test.cc src/error/flags_test.cc src/error/vulkan_test.cc)
     target_link_libraries(ae-test ae ${CMAKE_THREAD_LIBS_INIT} ${GTEST_BOTH_LIBRARIES})
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")

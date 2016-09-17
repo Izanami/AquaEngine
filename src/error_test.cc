@@ -4,16 +4,36 @@
 
 using namespace ae;
 
-static_assert(std::is_default_constructible<error::Vulkan>::value);
-static_assert(!std::is_move_constructible<error::Vulkan>::value);
-static_assert(!std::is_copy_constructible<error::Vulkan>::value);
+static_assert(std::is_default_constructible<Error>::value);
+static_assert(!std::is_move_constructible<Error>::value);
+static_assert(!std::is_copy_constructible<Error>::value);
+
+class MyError : public ae::Error {
+   public:
+    MyError(int code) {
+        if (code < 0) flags_.set_error();
+    }
+    ~MyError() {}
+};
 
 class ErrorTest : public ::testing::Test {
    protected:
-    virtual void SetUp() {}
+    virtual void SetUp() {
+        error_success = std::make_unique<MyError>(1);
+        error_error = std::make_unique<MyError>(-1);
+    }
+
+    std::unique_ptr<MyError> error_success = nullptr;
+    std::unique_ptr<MyError> error_error = nullptr;
 };
 
-TEST_F(ErrorTest, Vulkan) {
-    ASSERT_STREQ(error::Vulkan::to_str(VK_SUCCESS),
-                 "Vulkan : Command successfully completed");
+TEST_F(ErrorTest, State) {
+    ASSERT_EQ(error_success->IsSuccess(), true);
+    ASSERT_EQ(error_error->IsError(), true);
 }
+
+TEST_F(ErrorTest, DiagnosticAll) {
+    ASSERT_EQ(error_success->DiagnosticAll().second.is_success(), true);
+}
+
+TEST_F(ErrorTest, Message) { ASSERT_EQ(error_success->Message(), "Success"); }
