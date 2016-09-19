@@ -11,8 +11,8 @@
 using namespace ae;
 
 static_assert(std::is_default_constructible<Instance>::value);
-static_assert(!std::is_move_constructible<Instance>::value);
-static_assert(!std::is_copy_constructible<Instance>::value);
+static_assert(std::is_move_constructible<Instance>::value);
+static_assert(std::is_copy_constructible<Instance>::value);
 
 class InstanceTest : public ::testing::Test {
    protected:

@@ -45,10 +45,10 @@ class Instance {
     Instance();
     virtual ~Instance();
 
-    Instance(const Instance &) = delete;
-    Instance(Instance &&) = delete;
-    Instance &operator=(const Instance &) = delete;
-    Instance &operator=(Instance &&) = delete;
+    Instance(const Instance &);
+    Instance(Instance &&);
+    Instance &operator=(const Instance &);
+    Instance &operator=(Instance &&);
 
     // Create vulkan instance
     VkResult Create() noexcept;

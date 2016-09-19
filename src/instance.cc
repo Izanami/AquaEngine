@@ -15,6 +15,34 @@ Instance::Instance() {
 }
 Instance::~Instance() { vkDestroyInstance(*vk_instance_.get(), nullptr); }
 
+Instance::Instance(const Instance &instance)
+    : vk_instance_(instance.vk_instance_),
+      vk_instance_informations_(instance.vk_instance_informations_),
+      extensions_(instance.extensions_),
+      validations_(instance.validations_) {}
+
+Instance::Instance(Instance &&instance)
+    : vk_instance_(std::move(instance.vk_instance_)),
+      vk_instance_informations_(std::move(instance.vk_instance_informations_)),
+      extensions_(std::move(instance.extensions_)),
+      validations_(std::move(instance.validations_)) {}
+
+Instance &Instance::operator=(const Instance &instance) {
+    vk_instance_ = instance.vk_instance_;
+    vk_instance_informations_ = instance.vk_instance_informations_;
+    extensions_ = instance.extensions_;
+    validations_ = instance.validations_;
+    return *this;
+}
+
+Instance &Instance::operator=(Instance &&instance) {
+    vk_instance_ = std::move(instance.vk_instance_);
+    vk_instance_informations_ = std::move(instance.vk_instance_informations_);
+    extensions_ = std::move(instance.extensions_);
+    validations_ = std::move(instance.validations_);
+    return *this;
+}
+
 VkResult Instance::Create() noexcept {
     if (enable_default_validations) {
 	AddDefaultValidations();
