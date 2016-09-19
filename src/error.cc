@@ -4,9 +4,9 @@ namespace ae {
 Error::Error() {}
 Error::~Error() {}
 
-bool Error::IsSuccess() const noexcept { return flags_.is_success(); }
+bool Error::IsSuccess() const noexcept { return flags_.IsSuccess(); }
 
-bool Error::IsError() const noexcept { return flags_.is_error(); }
+bool Error::IsError() const noexcept { return flags_.IsError(); }
 
 error::Flags Error::flags() const noexcept { return flags_; }
 

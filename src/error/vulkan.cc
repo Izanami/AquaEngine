@@ -3,7 +3,6 @@
 namespace ae::error {
 
 Vulkan::Vulkan(VkResult result, std::shared_ptr<ae::Instance> instance) {
-    if (instance == nullptr) instance_ = std::make_shared<ae::Instance>();
     set_result(std::move(result));
     set_instance(std::move(instance));
 }
@@ -40,7 +39,10 @@ VkResult Vulkan::result() const noexcept { return result_; }
 
 void Vulkan::set_result(const VkResult result) noexcept {
     result_ = std::move(result);
-    if (result < 0) flags_.set_error();
+    if (result < 0)
+        flags_.SetError();
+    else
+        flags_.SetSuccess();
 }
 
 std::shared_ptr<ae::Instance> Vulkan::instance() const noexcept {
@@ -54,18 +56,19 @@ void Vulkan::set_instance(std::shared_ptr<ae::Instance> instance) noexcept {
 std::pair<std::string, Flags> Vulkan::DiagnosticAll() noexcept {
     if (result_ == VK_ERROR_EXTENSION_NOT_PRESENT) {
         return DiagnosticExtensions();
-    } else {
-        return std::make_pair(std::move(to_str(result_)), flags_);
+    } else {  // Default case
+        return std::make_pair(ToString(), flags_);
     }
 }
 
 std::pair<std::string, Flags> Vulkan::DiagnosticExtensions() noexcept {
     auto missing_extensions = instance()->MissingExtensions();
-    std::string error_message(to_str(result_));
+    std::string error_message(ToString());
 
     if (missing_extensions.size() > 0) {
-        error_message = to_str(VK_ERROR_EXTENSION_NOT_PRESENT);
-        flags_.set_error();
+        error_message = ToString(VK_ERROR_EXTENSION_NOT_PRESENT);
+        flags_.SetError();
+        result_ = VK_ERROR_EXTENSION_NOT_PRESENT;
         error_message += " :";
         for (const auto& extension : missing_extensions) {
             error_message += " ";
@@ -74,6 +77,10 @@ std::pair<std::string, Flags> Vulkan::DiagnosticExtensions() noexcept {
     }
 
     return std::make_pair(std::move(error_message), flags_);
+}
+
+const std::string Vulkan::ToString() const noexcept {
+    return std::string(ToString(result_));
 }
 
 } /* ae::error */

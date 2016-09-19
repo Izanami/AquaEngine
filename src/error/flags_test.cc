@@ -16,22 +16,22 @@ class ErrorFlagsTest : public ::testing::Test {
 };
 
 TEST_F(ErrorFlagsTest, Success) {
-    ASSERT_EQ(diagnostic->is_success(), true);
+    ASSERT_EQ(diagnostic->IsSuccess(), true);
 
-    diagnostic->set_success();
-    ASSERT_EQ(diagnostic->is_success(), true);
+    diagnostic->SetSuccess();
+    ASSERT_EQ(diagnostic->IsSuccess(), true);
 
-    diagnostic->reset_success();
-    ASSERT_EQ(diagnostic->is_success(), false);
+    diagnostic->ResetSuccess();
+    ASSERT_EQ(diagnostic->IsSuccess(), false);
 }
 
 TEST_F(ErrorFlagsTest, Error) {
-    ASSERT_EQ(diagnostic->is_error(), false);
+    ASSERT_EQ(diagnostic->IsError(), false);
 
-    diagnostic->set_error();
-    ASSERT_EQ(diagnostic->is_error(), true);
+    diagnostic->SetError();
+    ASSERT_EQ(diagnostic->IsError(), true);
 
-    diagnostic->reset_error();
-    ASSERT_EQ(diagnostic->is_error(), false);
-    ASSERT_EQ(diagnostic->is_success(), true);
+    diagnostic->ResetError();
+    ASSERT_EQ(diagnostic->IsError(), false);
+    ASSERT_EQ(diagnostic->IsSuccess(), true);
 }

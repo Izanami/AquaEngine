@@ -71,6 +71,7 @@ class Error {
     virtual std::pair<std::string, error::Flags> DiagnosticAll() noexcept;
 
     // Return human-readble message.
+    // Alias to DiagnosticAll().first
     virtual std::string Message() noexcept;
 
    protected:

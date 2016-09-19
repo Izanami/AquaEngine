@@ -14,13 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef AE_ERROR_DIAGNOSTIC_H_
-#define AE_ERROR_DIAGNOSTIC_H_
+#ifndef AE_ERROR_FLAGS_H_
+#define AE_ERROR_FLAGS_H_
 
 #include <bitset>
 namespace ae::error {
-constexpr int CodeFlagsMax = 3;
+
+// Number of bits in ae::error::Flags
+constexpr int CodeFlagsMax = 8;
+
+// Bits positions in ae::error::Flags
 enum class CodeFlags { kSuccess = 0, kVerbose };
+
+// Bit state flags of the error
+// Example :
+/*
+    ae::error::Flags flags;
+    if(random_number % 2)
+        flags.SetError();
+ */
 struct Flags : public std::bitset<CodeFlagsMax> {
     Flags();
     virtual ~Flags();
@@ -30,19 +42,19 @@ struct Flags : public std::bitset<CodeFlagsMax> {
     Flags &operator=(const Flags &);
     Flags &operator=(Flags &&);
 
-    void set_success() noexcept;
-    void reset_success() noexcept;
-    bool is_success() const noexcept;
+    void SetSuccess() noexcept;
+    void ResetSuccess() noexcept;
+    bool IsSuccess() const noexcept;
 
-    void set_error() noexcept;
-    void reset_error() noexcept;
-    bool is_error() const noexcept;
+    void SetError() noexcept;
+    void ResetError() noexcept;
+    bool IsError() const noexcept;
 
-    void set_verbose() noexcept;
-    void reset_verbose() noexcept;
-    bool is_verbose() const noexcept;
+    void SetVerbose() noexcept;
+    void ResetVerbose() noexcept;
+    bool IsVerbose() const noexcept;
 };
 
 } /* ae::error */
 
-#endif /* AE_ERROR_DIAGNOSTIC_H_ */
+#endif /* AE_ERROR_FLAGS_H_ */

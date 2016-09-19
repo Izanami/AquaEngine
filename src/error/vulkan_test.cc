@@ -16,7 +16,7 @@ class ErrorVulkanTest : public ::testing::Test {
 };
 
 TEST_F(ErrorVulkanTest, String) {
-    ASSERT_STREQ(error::Vulkan::to_str(VK_SUCCESS),
+    ASSERT_STREQ(error::Vulkan::ToString(VK_SUCCESS),
                  "Vulkan : Command successfully completed");
 }
 
@@ -37,12 +37,12 @@ TEST_F(ErrorVulkanTest, DiagnosticExtensions) {
     auto instance = std::make_shared<Instance>();
     vulkan_error->set_instance(instance);
 
-    ASSERT_EQ(vulkan_error->DiagnosticExtensions().second.is_success(), true);
+    ASSERT_EQ(vulkan_error->DiagnosticExtensions().second.IsSuccess(), true);
 
     instance->AddExtensions(extensions);
 
     ASSERT_EQ(vulkan_error->DiagnosticExtensions().first,
               "Vulkan : A requested extension is not supported : Buzz");
 
-    ASSERT_EQ(vulkan_error->DiagnosticExtensions().second.is_error(), true);
+    ASSERT_EQ(vulkan_error->DiagnosticExtensions().second.IsError(), true);
 }

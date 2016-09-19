@@ -11,7 +11,7 @@ static_assert(!std::is_copy_constructible<Error>::value);
 class MyError : public ae::Error {
    public:
     MyError(int code) {
-        if (code < 0) flags_.set_error();
+        if (code < 0) flags_.SetError();
     }
     ~MyError() {}
 };
@@ -33,7 +33,7 @@ TEST_F(ErrorTest, State) {
 }
 
 TEST_F(ErrorTest, DiagnosticAll) {
-    ASSERT_EQ(error_success->DiagnosticAll().second.is_success(), true);
+    ASSERT_EQ(error_success->DiagnosticAll().second.IsSuccess(), true);
 }
 
 TEST_F(ErrorTest, Message) { ASSERT_EQ(error_success->Message(), "Success"); }

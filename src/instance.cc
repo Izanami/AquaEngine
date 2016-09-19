@@ -16,7 +16,9 @@ Instance::Instance() {
 Instance::~Instance() { vkDestroyInstance(*vk_instance_.get(), nullptr); }
 
 VkResult Instance::Create() noexcept {
-    AddDefaultValidations();
+    if (enable_default_validations) {
+	AddDefaultValidations();
+    }
 
     if (validations_.size() > 0) {
 	std::vector<const char *> extensions_validations = {
@@ -113,9 +115,7 @@ std::vector<VkLayerProperties> Instance::AvailableValidations() const noexcept {
 }
 
 void Instance::AddDefaultValidations() noexcept {
-    if (enable_default_validations) {
-	AddValidations(kDefaultValidations);
-    }
+    AddValidations(kDefaultValidations);
 }
 
 std::vector<const char *> Instance::AvailableValidationsName() const noexcept {

@@ -26,6 +26,19 @@
 
 namespace ae::error {
 
+// Handle vulkan errors
+// You SHOULD read ae::Error
+//
+// Example :
+/*
+    auto instance = std::make_shared<ae::Instance>();
+    ae::Error::Vulkan error;
+    error.set_instance(instance);
+    error.set_result(instance->Create());
+
+    if(error.IsError())
+        throw error.DiagnosticAll().first;
+ */
 class Vulkan final : public ae::Error {
    public:
     Vulkan();
@@ -46,10 +59,17 @@ class Vulkan final : public ae::Error {
     std::shared_ptr<ae::Instance> instance() const noexcept;
     void set_instance(std::shared_ptr<ae::Instance>) noexcept;
 
+    // Analyse the errors for more details.
+    // You SHOULD read ae::Error::DiagnosticAll()
     std::pair<std::string, Flags> DiagnosticAll() noexcept override;
+
+    // Analyse extensions vulkan.
     std::pair<std::string, Flags> DiagnosticExtensions() noexcept;
 
-    static constexpr const char *to_str(const VkResult code) {
+    // Return message errors
+    const std::string ToString() const noexcept;
+
+    static constexpr const char *ToString(const VkResult code) noexcept {
         switch (code) {
             case VK_SUCCESS:
                 return "Vulkan : Command successfully completed";
@@ -155,9 +175,11 @@ class Vulkan final : public ae::Error {
     }
 
    private:
-    /* data */
+    // The code error
     VkResult result_ = VK_SUCCESS;
-    std::shared_ptr<ae::Instance> instance_ = nullptr;
+
+    // Used to analyse errors
+    std::shared_ptr<ae::Instance> instance_ = std::make_shared<ae::Instance>();
 };
 } /* ae::error */
 
