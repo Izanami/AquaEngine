@@ -17,9 +17,9 @@ bool GLFW::PoolEvent() noexcept {
     if (!glfwWindowShouldClose(window_.get())) {
         glfwPollEvents();
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 void GLFW::window_deleter::operator()(GLFWwindow* ptr) {

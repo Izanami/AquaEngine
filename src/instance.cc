@@ -110,6 +110,7 @@ std::vector<const char *> Instance::MissingExtensions() const noexcept {
     for (const auto &extension : extensions_) {
 	auto result = std::find(std::begin(available_extensions_name),
 				std::end(available_extensions_name), extension);
+
 	if (result == std::end(available_extensions_name)) {
 	    missing_extensions.push_back(extension);
 	}

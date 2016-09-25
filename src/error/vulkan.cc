@@ -54,11 +54,10 @@ void Vulkan::set_instance(std::shared_ptr<ae::Instance> instance) noexcept {
 }
 
 std::pair<std::string, Flags> Vulkan::DiagnosticAll() noexcept {
-    if (result_ == VK_ERROR_EXTENSION_NOT_PRESENT) {
+    if (result_ == VK_ERROR_EXTENSION_NOT_PRESENT)
         return DiagnosticExtensions();
-    } else {  // Default case
-        return std::make_pair(ToString(), flags_);
-    }
+
+    return std::make_pair(ToString(), flags_);
 }
 
 std::pair<std::string, Flags> Vulkan::DiagnosticExtensions() noexcept {

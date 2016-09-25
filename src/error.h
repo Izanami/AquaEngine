@@ -21,29 +21,28 @@
 
 namespace ae {
 
-// Handle errors
-// You MUST read ae::error::Flags
-//
-// Exemple :
-/*
-    class MyError : public ae::Error {
-        MyError(int code);
-        virtual MyError();
-    }
-
-    MyError::MyError(int code) {
-        if(code < 0)
-            flags_.set_error();
-    }
-
-    int main() {
-        MyError error(-1);
-
-        if(error.IsError)
-            throw error.Message();
-    }
-
-*/
+/// \brief Handle errors
+///
+/// \sa ae::error::Flags
+///
+/// Example :
+/// \code
+///     class MyError : public ae::Error {
+///         MyError(int code);
+///         virtual MyError();
+///     }
+///
+///     MyError::MyError(int code) {
+///         if(code < 0)
+///             flags_.set_error();
+///     }
+///
+///     int main() {
+///         MyError error(-1);
+///
+///         if (error.IsError) throw error.Message();
+///     }
+/// \endcode
 class Error {
    public:
     Error();
@@ -58,25 +57,26 @@ class Error {
 
     error::Flags flags() const noexcept;
 
-    // Analyse the errors for more details.
-    // It returns a std::pair. The first element is for humans and the
-    // second is for the program.
-    //
-    // Example :
-    /*
-     auto diagnostic = MyError(); // See ae::Error
-     if(diagnostic.second.is_error())
-        throw diagnostics.first
-     */
+    /// \brief Analyse the errors for more details.
+    /// \returns a The first element is for humans and the second is for the
+    /// program.
+    ///
+    /// Example :
+    ///
+    /// \code
+    ///     auto diagnostic = MyError(); // See ae::Error
+    ///     if(diagnostic.second.is_error())
+    ///     throw diagnostics.first
+    /// \endcode
     virtual std::pair<std::string, error::Flags> DiagnosticAll() noexcept;
 
-    // Return human-readble message.
-    // Alias to DiagnosticAll().first
+    /// \brief Return human-readble message.
+    /// Alias to DiagnosticAll().first
     virtual std::string Message() noexcept;
 
    protected:
-    // Flags state
-    // You MUST read ae::error::Flags
+    /// \brief Flags state
+    /// \sa ae::error::Flags
     error::Flags flags_;
 };
 } /* ae */
