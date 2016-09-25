@@ -7,14 +7,16 @@ stages:
 
 build_job:
   stage: build
-  except: fs-pages
+  except: 
+    - fs-pages
   script:
     - cmake .
     - make
 
 test_job:
   stage: test
-  except: fs-pages
+  except: 
+    - fs-pages
   script:
   - export DISPLAY=:1
   - cmake .
