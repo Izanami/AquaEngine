@@ -1,4 +1,4 @@
 {
-    "directory_to_copy": "build/doc/",
+    "directory_to_copy": "doc/",
     "is_master_repo": true
 }
