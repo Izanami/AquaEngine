@@ -1,0 +1,107 @@
+\hypertarget{structae_1_1error_1_1_flags}{}\section{ae\+:\+:error\+:\+:Flags Struct Reference}
+\label{structae_1_1error_1_1_flags}\index{ae\+::error\+::\+Flags@{ae\+::error\+::\+Flags}}
+
+
+Bit state flags of the error.  
+
+
+
+
+{\ttfamily \#include $<$flags.\+h$>$}
+
+
+
+Inheritance diagram for ae\+:\+:error\+:\+:Flags\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{structae_1_1error_1_1_flags__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ae\+:\+:error\+:\+:Flags\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{structae_1_1error_1_1_flags__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structae_1_1error_1_1_flags_ac202ad39c23bb50a535c1a9af3a8c0b1}{}\label{structae_1_1error_1_1_flags_ac202ad39c23bb50a535c1a9af3a8c0b1} 
+enum \hyperlink{structae_1_1error_1_1_flags_ac202ad39c23bb50a535c1a9af3a8c0b1}{Code} \{ {\bfseries k\+Success} = 0, 
+{\bfseries k\+Verbose} = 1
+ \}\begin{DoxyCompactList}\small\item\em Bits positions in \hyperlink{structae_1_1error_1_1_flags}{ae\+::error\+::\+Flags}. \end{DoxyCompactList}
+\item 
+\hypertarget{structae_1_1error_1_1_flags_a9a0599e8c956ab8b269a83e68706aff4}{}\label{structae_1_1error_1_1_flags_a9a0599e8c956ab8b269a83e68706aff4} 
+using \hyperlink{structae_1_1error_1_1_flags_a9a0599e8c956ab8b269a83e68706aff4}{base} = std\+::bitset$<$ Code\+Flags\+Max $>$
+\begin{DoxyCompactList}\small\item\em Base class of \hyperlink{structae_1_1error_1_1_flags}{ae\+::error\+::\+Flags}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structae_1_1error_1_1_flags_adbb5b192eaf777f86ca7ba817579d06b}{}\label{structae_1_1error_1_1_flags_adbb5b192eaf777f86ca7ba817579d06b} 
+void \hyperlink{structae_1_1error_1_1_flags_adbb5b192eaf777f86ca7ba817579d06b}{Set\+Success} () noexcept
+\begin{DoxyCompactList}\small\item\em Set the k\+Success bit flag to true. \end{DoxyCompactList}\item 
+\hypertarget{structae_1_1error_1_1_flags_a71313318889dccdaf15ab4956afefbaf}{}\label{structae_1_1error_1_1_flags_a71313318889dccdaf15ab4956afefbaf} 
+void \hyperlink{structae_1_1error_1_1_flags_a71313318889dccdaf15ab4956afefbaf}{Reset\+Success} () noexcept
+\begin{DoxyCompactList}\small\item\em Set the k\+Success bit flag to false. \end{DoxyCompactList}\item 
+\hypertarget{structae_1_1error_1_1_flags_a7c28232700cf13cef02bb0ba4c6db15b}{}\label{structae_1_1error_1_1_flags_a7c28232700cf13cef02bb0ba4c6db15b} 
+bool \hyperlink{structae_1_1error_1_1_flags_a7c28232700cf13cef02bb0ba4c6db15b}{Is\+Success} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the k\+Success bit flag. \end{DoxyCompactList}\item 
+\hypertarget{structae_1_1error_1_1_flags_a0564df5fa77cd2ef1dd7dcb0ce4105b9}{}\label{structae_1_1error_1_1_flags_a0564df5fa77cd2ef1dd7dcb0ce4105b9} 
+void \hyperlink{structae_1_1error_1_1_flags_a0564df5fa77cd2ef1dd7dcb0ce4105b9}{Set\+Error} () noexcept
+\begin{DoxyCompactList}\small\item\em Alias to \hyperlink{structae_1_1error_1_1_flags_a71313318889dccdaf15ab4956afefbaf}{Reset\+Success()}. \end{DoxyCompactList}\item 
+\hypertarget{structae_1_1error_1_1_flags_a9b13f39f7bbead91006bc776d32cb14e}{}\label{structae_1_1error_1_1_flags_a9b13f39f7bbead91006bc776d32cb14e} 
+void \hyperlink{structae_1_1error_1_1_flags_a9b13f39f7bbead91006bc776d32cb14e}{Reset\+Error} () noexcept
+\begin{DoxyCompactList}\small\item\em Alias to \hyperlink{structae_1_1error_1_1_flags_adbb5b192eaf777f86ca7ba817579d06b}{Set\+Success()}. \end{DoxyCompactList}\item 
+\hypertarget{structae_1_1error_1_1_flags_af9751a6f34f4a83bbe402d97e9af646d}{}\label{structae_1_1error_1_1_flags_af9751a6f34f4a83bbe402d97e9af646d} 
+bool \hyperlink{structae_1_1error_1_1_flags_af9751a6f34f4a83bbe402d97e9af646d}{Is\+Error} () const noexcept
+\begin{DoxyCompactList}\small\item\em Invert \hyperlink{structae_1_1error_1_1_flags_a7c28232700cf13cef02bb0ba4c6db15b}{Is\+Success()}. \end{DoxyCompactList}\item 
+\hypertarget{structae_1_1error_1_1_flags_aa80a0e830d0f0a390c5c8158b909fc29}{}\label{structae_1_1error_1_1_flags_aa80a0e830d0f0a390c5c8158b909fc29} 
+void \hyperlink{structae_1_1error_1_1_flags_aa80a0e830d0f0a390c5c8158b909fc29}{Set\+Verbose} () noexcept
+\begin{DoxyCompactList}\small\item\em Set the k\+Verbose bit flag to true. \end{DoxyCompactList}\item 
+\hypertarget{structae_1_1error_1_1_flags_a32b80335f90ce234cf1d1d172e3c30a5}{}\label{structae_1_1error_1_1_flags_a32b80335f90ce234cf1d1d172e3c30a5} 
+void \hyperlink{structae_1_1error_1_1_flags_a32b80335f90ce234cf1d1d172e3c30a5}{Reset\+Verbose} () noexcept
+\begin{DoxyCompactList}\small\item\em Set the k\+Verbose bit flag to false. \end{DoxyCompactList}\item 
+\hypertarget{structae_1_1error_1_1_flags_ab47c8ae55803bbca67c8328ca2ca44bc}{}\label{structae_1_1error_1_1_flags_ab47c8ae55803bbca67c8328ca2ca44bc} 
+bool \hyperlink{structae_1_1error_1_1_flags_ab47c8ae55803bbca67c8328ca2ca44bc}{Is\+Verbose} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the k\+Verbose bit flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structae_1_1error_1_1_flags_a20c944aed64eceeec6e4eb34553f499e}{}\label{structae_1_1error_1_1_flags_a20c944aed64eceeec6e4eb34553f499e} 
+{\bfseries Flags} (const \hyperlink{structae_1_1error_1_1_flags}{Flags} \&)
+\item 
+\hypertarget{structae_1_1error_1_1_flags_a02aa5d86c37d9f80a4de795fb81b1c19}{}\label{structae_1_1error_1_1_flags_a02aa5d86c37d9f80a4de795fb81b1c19} 
+{\bfseries Flags} (\hyperlink{structae_1_1error_1_1_flags}{Flags} \&\&)
+\item 
+\hypertarget{structae_1_1error_1_1_flags_a0a215694736b3b865b639c5b5abd173c}{}\label{structae_1_1error_1_1_flags_a0a215694736b3b865b639c5b5abd173c} 
+\hyperlink{structae_1_1error_1_1_flags}{Flags} \& {\bfseries operator=} (const \hyperlink{structae_1_1error_1_1_flags}{Flags} \&)
+\item 
+\hypertarget{structae_1_1error_1_1_flags_ae08dbfd93ce5d40516fc3b27fb82d196}{}\label{structae_1_1error_1_1_flags_ae08dbfd93ce5d40516fc3b27fb82d196} 
+\hyperlink{structae_1_1error_1_1_flags}{Flags} \& {\bfseries operator=} (\hyperlink{structae_1_1error_1_1_flags}{Flags} \&\&)
+\end{DoxyCompactItemize}
+
+
+
+\subsection{Detailed Description}
+Bit state flags of the error. 
+
+Example \+:
+
+
+\begin{DoxyCode}
+\hyperlink{structae_1_1error_1_1_flags}{ae::error::Flags} flags;
+\textcolor{keywordflow}{if}(random\_number % 2)
+    flags.\hyperlink{structae_1_1error_1_1_flags_a0564df5fa77cd2ef1dd7dcb0ce4105b9}{SetError}();
+\end{DoxyCode}
+ 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/error/flags.\+h\item 
+src/error/flags.\+cc\end{DoxyCompactItemize}

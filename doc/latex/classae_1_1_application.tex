@@ -1,0 +1,115 @@
+\hypertarget{classae_1_1_application}{}\section{ae\+:\+:Application Class Reference}
+\label{classae_1_1_application}\index{ae\+::\+Application@{ae\+::\+Application}}
+
+
+Base class to create Aqua\+Engine application.  
+
+
+
+
+{\ttfamily \#include $<$application.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classae_1_1_application_a7e9a30ce07057f5f37b02500f876436a}{}\label{classae_1_1_application_a7e9a30ce07057f5f37b02500f876436a} 
+{\bfseries Application} (const \hyperlink{classae_1_1_application}{Application} \&)=delete
+\item 
+\hypertarget{classae_1_1_application_ae18f573dfd5d579e562784781f53a87a}{}\label{classae_1_1_application_ae18f573dfd5d579e562784781f53a87a} 
+\hyperlink{classae_1_1_application}{Application} \& {\bfseries operator=} (const \hyperlink{classae_1_1_application}{Application} \&)=delete
+\item 
+\hypertarget{classae_1_1_application_ac5803ae7a946ba88cb65a110c9ae6621}{}\label{classae_1_1_application_ac5803ae7a946ba88cb65a110c9ae6621} 
+\hyperlink{classae_1_1_application}{Application} \& {\bfseries operator=} (\hyperlink{classae_1_1_application}{Application} \&\&)=delete
+\item 
+\hypertarget{classae_1_1_application_a4c0b8e813b5596a08ecf5f69423fda99}{}\label{classae_1_1_application_a4c0b8e813b5596a08ecf5f69423fda99} 
+{\bfseries Application} (\hyperlink{classae_1_1_application}{Application} \&\&)=delete
+\item 
+\hypertarget{classae_1_1_application_a2f4107e93f0e3c2525ad65f70a951fed}{}\label{classae_1_1_application_a2f4107e93f0e3c2525ad65f70a951fed} 
+std\+::string \hyperlink{classae_1_1_application_a2f4107e93f0e3c2525ad65f70a951fed}{name} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns a copy of the application name. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_application_aa83e498302067740788c8e3bd9b95a62}{}\label{classae_1_1_application_aa83e498302067740788c8e3bd9b95a62} 
+void \hyperlink{classae_1_1_application_aa83e498302067740788c8e3bd9b95a62}{set\+\_\+name} (std\+::string) noexcept
+\begin{DoxyCompactList}\small\item\em Set the application name. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_application_a7b6d08a1968612f523e6f6c3b2c7786b}{}\label{classae_1_1_application_a7b6d08a1968612f523e6f6c3b2c7786b} 
+int \hyperlink{classae_1_1_application_a7b6d08a1968612f523e6f6c3b2c7786b}{version} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns a copy of the application versions. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_application_a7911bcd7ef75ee1bdce9d783b5d9577b}{}\label{classae_1_1_application_a7911bcd7ef75ee1bdce9d783b5d9577b} 
+void \hyperlink{classae_1_1_application_a7911bcd7ef75ee1bdce9d783b5d9577b}{set\+\_\+version} (const int) noexcept
+\begin{DoxyCompactList}\small\item\em Set the application version with integer. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_application_aa9c90bf2ce938a0861254f9ed656a68f}{}\label{classae_1_1_application_aa9c90bf2ce938a0861254f9ed656a68f} 
+void \hyperlink{classae_1_1_application_aa9c90bf2ce938a0861254f9ed656a68f}{set\+\_\+version} (const int major, const int minor, const int patch) noexcept
+\begin{DoxyCompactList}\small\item\em Helper to set the application version. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_application_a430877054b3f5cb743b3d8541a0a37e8}{}\label{classae_1_1_application_a430877054b3f5cb743b3d8541a0a37e8} 
+const std\+::shared\+\_\+ptr$<$ Vk\+Application\+Info $>$ \hyperlink{classae_1_1_application_a430877054b3f5cb743b3d8541a0a37e8}{informations} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns smart-\/pointer of Vulkan informations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const Vk\+Application\+Info \hyperlink{classae_1_1_application_a4c12a034bcd9b22ebe2c8770e62f9792}{k\+Default\+Informations}
+\begin{DoxyCompactList}\small\item\em Base populated informations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class to create Aqua\+Engine application. 
+
+Example \+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{class }DemoApp : \textcolor{keyword}{public} \hyperlink{classae_1_1_application}{ae::Application} \{
+    DemoApp();
+    \textcolor{keyword}{virtual} ~DemoApp();
+
+   \textcolor{keyword}{protected}:
+    std::shared\_ptr<ae::error::Vulkan> error\_vulkan\_\{
+        std::make\_shared<ae::error::Vulkan>()\};
+    std::shared\_ptr<ae::Instance> instance\_\{
+    std::make\_shared<ae::Instance>()\};
+    std::unique\_ptr<ae::Window> window\_\{ae::Window::Create()\};
+\};
+
+DemoApp::DemoApp() : \hyperlink{namespaceae}{ae}::Application() \{
+    set\_name(\textcolor{stringliteral}{"Demo AquaEngine"});
+    set\_version(1, 0, 0);
+    error\_vulkan\_->set\_instance(instance\_);
+    instance\_->AddExtensions(window\_->extensions());
+
+    error\_vulkan\_->set\_result(instance\_->Create());
+    \textcolor{keywordflow}{if} (error\_vulkan\_->IsError()) \textcolor{keywordflow}{throw} error\_vulkan\_->Message();
+
+    \textcolor{keywordflow}{while} (window\_->PoolEvent()) \{
+    \};
+\}
+
+DemoApp::~DemoApp() \{\}
+\end{DoxyCode}
+ 
+
+\subsection{Member Data Documentation}
+\hypertarget{classae_1_1_application_a4c12a034bcd9b22ebe2c8770e62f9792}{}\label{classae_1_1_application_a4c12a034bcd9b22ebe2c8770e62f9792} 
+\index{ae\+::\+Application@{ae\+::\+Application}!k\+Default\+Informations@{k\+Default\+Informations}}
+\index{k\+Default\+Informations@{k\+Default\+Informations}!ae\+::\+Application@{ae\+::\+Application}}
+\subsubsection{\texorpdfstring{k\+Default\+Informations}{kDefaultInformations}}
+{\footnotesize\ttfamily const Vk\+Application\+Info ae\+::\+Application\+::k\+Default\+Informations\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+\{
+        VK\_STRUCTURE\_TYPE\_APPLICATION\_INFO,
+        \textcolor{keyword}{nullptr},
+        \textcolor{stringliteral}{""},
+        MakeVersion(1, 0, 0),
+        \textcolor{stringliteral}{"AquaEngine"},
+        MakeVersion(1, 0, 0),
+        VK\_API\_VERSION\_1\_0\}
+\end{DoxyCode}
+
+
+Base populated informations. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/application.\+h\item 
+src/application.\+cc\end{DoxyCompactItemize}

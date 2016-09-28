@@ -1,0 +1,146 @@
+\hypertarget{classae_1_1_error}{}\section{ae\+:\+:Error Class Reference}
+\label{classae_1_1_error}\index{ae\+::\+Error@{ae\+::\+Error}}
+
+
+Handle errors.  
+
+
+
+
+{\ttfamily \#include $<$error.\+h$>$}
+
+
+
+Inheritance diagram for ae\+:\+:Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=134pt]{classae_1_1_error__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ae\+:\+:Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classae_1_1_error__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classae_1_1_error_af8423867a7fddb42a71111b96c92c740}{}\label{classae_1_1_error_af8423867a7fddb42a71111b96c92c740} 
+{\bfseries Error} (const \hyperlink{classae_1_1_error}{Error} \&)=delete
+\item 
+\hypertarget{classae_1_1_error_a60f2301a074178a8b3f8cf6bd37ec395}{}\label{classae_1_1_error_a60f2301a074178a8b3f8cf6bd37ec395} 
+{\bfseries Error} (\hyperlink{classae_1_1_error}{Error} \&\&)=delete
+\item 
+\hypertarget{classae_1_1_error_a26a17a28eaed3d38349191ec5a878572}{}\label{classae_1_1_error_a26a17a28eaed3d38349191ec5a878572} 
+\hyperlink{classae_1_1_error}{Error} \& {\bfseries operator=} (const \hyperlink{classae_1_1_error}{Error} \&)=delete
+\item 
+\hypertarget{classae_1_1_error_a5e800d8b4d0e8bccc14dd5dc815b9a08}{}\label{classae_1_1_error_a5e800d8b4d0e8bccc14dd5dc815b9a08} 
+\hyperlink{classae_1_1_error}{Error} \& {\bfseries operator=} (\hyperlink{classae_1_1_error}{Error} \&\&)=delete
+\item 
+\hypertarget{classae_1_1_error_a5424dd175ff84fcc0dbc2bda1952b939}{}\label{classae_1_1_error_a5424dd175ff84fcc0dbc2bda1952b939} 
+bool \hyperlink{classae_1_1_error_a5424dd175ff84fcc0dbc2bda1952b939}{Is\+Success} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the k\+Success bit flag. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_error_a12852602e662db19d5d7f5cc06256c46}{}\label{classae_1_1_error_a12852602e662db19d5d7f5cc06256c46} 
+bool \hyperlink{classae_1_1_error_a12852602e662db19d5d7f5cc06256c46}{Is\+Error} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns invert of the k\+Success bit flag. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_error_a7dbdfd03e6f6d180d1f0ded4efa10cac}{}\label{classae_1_1_error_a7dbdfd03e6f6d180d1f0ded4efa10cac} 
+\hyperlink{structae_1_1error_1_1_flags}{error\+::\+Flags} \hyperlink{classae_1_1_error_a7dbdfd03e6f6d180d1f0ded4efa10cac}{flags} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the bits flags. \end{DoxyCompactList}\item 
+virtual std\+::pair$<$ std\+::string, \hyperlink{structae_1_1error_1_1_flags}{error\+::\+Flags} $>$ \hyperlink{classae_1_1_error_ab6172fe7f6627dd726223bd4bd923693}{Diagnostic\+All} () noexcept
+\begin{DoxyCompactList}\small\item\em Analyse the errors for more details. \end{DoxyCompactList}\item 
+virtual std\+::string \hyperlink{classae_1_1_error_a5390c80f9eed13d8b4fce01468395187}{Message} () noexcept
+\begin{DoxyCompactList}\small\item\em Return human-\/readble message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structae_1_1error_1_1_flags}{error\+::\+Flags} \hyperlink{classae_1_1_error_a323912fc2d0f697f2513d0c990478073}{flags\+\_\+}
+\begin{DoxyCompactList}\small\item\em Flags state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handle errors. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{structae_1_1error_1_1_flags}{ae\+::error\+::\+Flags}
+\end{DoxySeeAlso}
+Example \+: 
+\begin{DoxyCode}
+\textcolor{keyword}{class }\hyperlink{class_my_error}{MyError} : \textcolor{keyword}{public} \hyperlink{classae_1_1_error}{ae::Error} \{
+    \hyperlink{class_my_error}{MyError}(\textcolor{keywordtype}{int} code);
+    \textcolor{keyword}{virtual} \hyperlink{class_my_error}{MyError}();
+\}
+
+MyError::MyError(\textcolor{keywordtype}{int} code) \{
+    \textcolor{keywordflow}{if}(code < 0)
+        \hyperlink{classae_1_1_error_a323912fc2d0f697f2513d0c990478073}{flags\_}.set\_error();
+\}
+
+\textcolor{keywordtype}{int} main() \{
+    \hyperlink{class_my_error}{MyError} error(-1);
+
+    \textcolor{keywordflow}{if} (error.IsError) \textcolor{keywordflow}{throw} error.Message();
+\}
+\end{DoxyCode}
+ 
+
+\subsection{Member Function Documentation}
+\hypertarget{classae_1_1_error_ab6172fe7f6627dd726223bd4bd923693}{}\label{classae_1_1_error_ab6172fe7f6627dd726223bd4bd923693} 
+\index{ae\+::\+Error@{ae\+::\+Error}!Diagnostic\+All@{Diagnostic\+All}}
+\index{Diagnostic\+All@{Diagnostic\+All}!ae\+::\+Error@{ae\+::\+Error}}
+\subsubsection{\texorpdfstring{Diagnostic\+All()}{DiagnosticAll()}}
+{\footnotesize\ttfamily std\+::pair$<$ std\+::string, \hyperlink{structae_1_1error_1_1_flags}{error\+::\+Flags} $>$ ae\+::\+Error\+::\+Diagnostic\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Analyse the errors for more details. 
+
+\begin{DoxyReturn}{Returns}
+The first element is for humans and the second is for the program.
+\end{DoxyReturn}
+Example \+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{auto} diagnostic = \hyperlink{class_my_error}{MyError}(); \textcolor{comment}{// See ae::Error}
+\textcolor{keywordflow}{if}(diagnostic.second.is\_error())
+\textcolor{keywordflow}{throw} diagnostics.first
+\end{DoxyCode}
+ \hypertarget{classae_1_1_error_a5390c80f9eed13d8b4fce01468395187}{}\label{classae_1_1_error_a5390c80f9eed13d8b4fce01468395187} 
+\index{ae\+::\+Error@{ae\+::\+Error}!Message@{Message}}
+\index{Message@{Message}!ae\+::\+Error@{ae\+::\+Error}}
+\subsubsection{\texorpdfstring{Message()}{Message()}}
+{\footnotesize\ttfamily std\+::string ae\+::\+Error\+::\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Return human-\/readble message. 
+
+Alias to \hyperlink{classae_1_1_error_ab6172fe7f6627dd726223bd4bd923693}{Diagnostic\+All()}.first 
+
+\subsection{Member Data Documentation}
+\hypertarget{classae_1_1_error_a323912fc2d0f697f2513d0c990478073}{}\label{classae_1_1_error_a323912fc2d0f697f2513d0c990478073} 
+\index{ae\+::\+Error@{ae\+::\+Error}!flags\+\_\+@{flags\+\_\+}}
+\index{flags\+\_\+@{flags\+\_\+}!ae\+::\+Error@{ae\+::\+Error}}
+\subsubsection{\texorpdfstring{flags\+\_\+}{flags\_}}
+{\footnotesize\ttfamily \hyperlink{structae_1_1error_1_1_flags}{error\+::\+Flags} ae\+::\+Error\+::flags\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Flags state. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{structae_1_1error_1_1_flags}{ae\+::error\+::\+Flags} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/error.\+h\item 
+src/error.\+cc\end{DoxyCompactItemize}

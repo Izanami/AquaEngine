@@ -1,0 +1,170 @@
+\hypertarget{classae_1_1_instance}{}\section{ae\+:\+:Instance Class Reference}
+\label{classae_1_1_instance}\index{ae\+::\+Instance@{ae\+::\+Instance}}
+
+
+Handle to Vulkan instance.  
+
+
+
+
+{\ttfamily \#include $<$instance.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classae_1_1_instance_a9de8fa013e11a71aa6e09f142aa1a927}{}\label{classae_1_1_instance_a9de8fa013e11a71aa6e09f142aa1a927} 
+Vk\+Result \hyperlink{classae_1_1_instance_a9de8fa013e11a71aa6e09f142aa1a927}{Create} () noexcept
+\begin{DoxyCompactList}\small\item\em Create vulkan instance. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_instance_a0aaff634cda5a58a37ae93b2f577721d}{}\label{classae_1_1_instance_a0aaff634cda5a58a37ae93b2f577721d} 
+std\+::vector$<$ const char $\ast$ $>$ \hyperlink{classae_1_1_instance_a0aaff634cda5a58a37ae93b2f577721d}{extensions} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns a copy extensions. \end{DoxyCompactList}\item 
+void \hyperlink{classae_1_1_instance_a880ed1eaf9b821ac616865821a5f15ef}{Add\+Extensions} (const std\+::vector$<$ const char $\ast$$>$ \&) noexcept
+\begin{DoxyCompactList}\small\item\em Add to the list the extensions which will be activated. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_instance_a1546a926e92a106a3829ce6b8729de42}{}\label{classae_1_1_instance_a1546a926e92a106a3829ce6b8729de42} 
+std\+::vector$<$ Vk\+Extension\+Properties $>$ \hyperlink{classae_1_1_instance_a1546a926e92a106a3829ce6b8729de42}{Available\+Extensions} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns list of available extensions. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_instance_a135806a6a6de15f61b3a66c20aa1c738}{}\label{classae_1_1_instance_a135806a6a6de15f61b3a66c20aa1c738} 
+std\+::vector$<$ const char $\ast$ $>$ \hyperlink{classae_1_1_instance_a135806a6a6de15f61b3a66c20aa1c738}{Available\+Extensions\+Name} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns list of available extenions with only the name. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_instance_a50d9c6f77415412fc5cedc2838abc527}{}\label{classae_1_1_instance_a50d9c6f77415412fc5cedc2838abc527} 
+std\+::vector$<$ const char $\ast$ $>$ \hyperlink{classae_1_1_instance_a50d9c6f77415412fc5cedc2838abc527}{Missing\+Extensions} () const noexcept
+\begin{DoxyCompactList}\small\item\em What are the missing extensions Vulkan. Compare \hyperlink{classae_1_1_instance_a0aaff634cda5a58a37ae93b2f577721d}{extensions()} with \hyperlink{classae_1_1_instance_a1546a926e92a106a3829ce6b8729de42}{Available\+Extensions()}. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_instance_a356579044ea77c9cc14723f0b7d7a52d}{}\label{classae_1_1_instance_a356579044ea77c9cc14723f0b7d7a52d} 
+std\+::vector$<$ const char $\ast$ $>$ \hyperlink{classae_1_1_instance_a356579044ea77c9cc14723f0b7d7a52d}{validations} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns a copy validations layers. \end{DoxyCompactList}\item 
+void \hyperlink{classae_1_1_instance_ae00908ee44223a209184015514a35685}{Add\+Validations} (const std\+::vector$<$ const char $\ast$$>$ \&) noexcept
+\begin{DoxyCompactList}\small\item\em Add to the list validations which will be activated. \end{DoxyCompactList}\item 
+void \hyperlink{classae_1_1_instance_ae6ab8f05e13a1efeb8bcc4a6972b9072}{Add\+Default\+Validations} () noexcept
+\begin{DoxyCompactList}\small\item\em Add suggest validations. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_instance_a6b46129d8c0b5d204eab1a1cecb5b221}{}\label{classae_1_1_instance_a6b46129d8c0b5d204eab1a1cecb5b221} 
+std\+::vector$<$ Vk\+Layer\+Properties $>$ \hyperlink{classae_1_1_instance_a6b46129d8c0b5d204eab1a1cecb5b221}{Available\+Validations} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns list of available validations layers. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_instance_a3439df7740449cf58fe3613c957b359f}{}\label{classae_1_1_instance_a3439df7740449cf58fe3613c957b359f} 
+std\+::vector$<$ const char $\ast$ $>$ \hyperlink{classae_1_1_instance_a3439df7740449cf58fe3613c957b359f}{Available\+Validations\+Name} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns list of available validations layers with only the name. \end{DoxyCompactList}\item 
+std\+::vector$<$ const char $\ast$ $>$ \hyperlink{classae_1_1_instance_aa76edbae91362fadb47c743b6f4298be}{Missing\+Validations} () const noexcept
+\begin{DoxyCompactList}\small\item\em What are the missing validations layers Vulkan. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classae_1_1_instance_a48d480419ea5ee601db2bacf7b6d48d2}{}\label{classae_1_1_instance_a48d480419ea5ee601db2bacf7b6d48d2} 
+{\bfseries Instance} (const \hyperlink{classae_1_1_instance}{Instance} \&)
+\item 
+\hypertarget{classae_1_1_instance_ac0b8b262e4aa1e2ff3eb0e8839f9868c}{}\label{classae_1_1_instance_ac0b8b262e4aa1e2ff3eb0e8839f9868c} 
+{\bfseries Instance} (\hyperlink{classae_1_1_instance}{Instance} \&\&)
+\item 
+\hypertarget{classae_1_1_instance_ad01e1dd78cb36b0a112770281a836f19}{}\label{classae_1_1_instance_ad01e1dd78cb36b0a112770281a836f19} 
+\hyperlink{classae_1_1_instance}{Instance} \& {\bfseries operator=} (const \hyperlink{classae_1_1_instance}{Instance} \&)
+\item 
+\hypertarget{classae_1_1_instance_a2d73116829ee705a15c32f9e7c113524}{}\label{classae_1_1_instance_a2d73116829ee705a15c32f9e7c113524} 
+\hyperlink{classae_1_1_instance}{Instance} \& {\bfseries operator=} (\hyperlink{classae_1_1_instance}{Instance} \&\&)
+\end{DoxyCompactItemize}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::vector$<$ const char $\ast$ $>$ \hyperlink{classae_1_1_instance_a51fa0c0f46de73754c52841fc458d4ac}{k\+Default\+Validations}
+\begin{DoxyCompactList}\small\item\em Suggest validations layers. \end{DoxyCompactList}\item 
+\hypertarget{classae_1_1_instance_a5dabba3cfc37e4f41a5c8a0b710f2adf}{}\label{classae_1_1_instance_a5dabba3cfc37e4f41a5c8a0b710f2adf} 
+bool \hyperlink{classae_1_1_instance_a5dabba3cfc37e4f41a5c8a0b710f2adf}{enable\+\_\+default\+\_\+validations} = true
+\begin{DoxyCompactList}\small\item\em If true, enable default validations when \hyperlink{classae_1_1_instance_a9de8fa013e11a71aa6e09f142aa1a927}{Create()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handle to Vulkan instance. 
+
+Example \+:
+
+
+\begin{DoxyCode}
+\hyperlink{classae_1_1_instance}{ae::Instance} instance;
+
+std::vector<const char *> extensions = \{VK\_KHR\_SURFACE\_EXTENSION\_NAME\};
+instance.\hyperlink{classae_1_1_instance_a880ed1eaf9b821ac616865821a5f15ef}{AddExtensions}(extensions);
+
+instance.\hyperlink{classae_1_1_instance_a9de8fa013e11a71aa6e09f142aa1a927}{Create}();
+\end{DoxyCode}
+ 
+
+\subsection{Member Function Documentation}
+\hypertarget{classae_1_1_instance_ae6ab8f05e13a1efeb8bcc4a6972b9072}{}\label{classae_1_1_instance_ae6ab8f05e13a1efeb8bcc4a6972b9072} 
+\index{ae\+::\+Instance@{ae\+::\+Instance}!Add\+Default\+Validations@{Add\+Default\+Validations}}
+\index{Add\+Default\+Validations@{Add\+Default\+Validations}!ae\+::\+Instance@{ae\+::\+Instance}}
+\subsubsection{\texorpdfstring{Add\+Default\+Validations()}{AddDefaultValidations()}}
+{\footnotesize\ttfamily void ae\+::\+Instance\+::\+Add\+Default\+Validations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Add suggest validations. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classae_1_1_instance_a51fa0c0f46de73754c52841fc458d4ac}{ae\+::\+Instance\+::k\+Default\+Validations} 
+\end{DoxySeeAlso}
+\hypertarget{classae_1_1_instance_a880ed1eaf9b821ac616865821a5f15ef}{}\label{classae_1_1_instance_a880ed1eaf9b821ac616865821a5f15ef} 
+\index{ae\+::\+Instance@{ae\+::\+Instance}!Add\+Extensions@{Add\+Extensions}}
+\index{Add\+Extensions@{Add\+Extensions}!ae\+::\+Instance@{ae\+::\+Instance}}
+\subsubsection{\texorpdfstring{Add\+Extensions()}{AddExtensions()}}
+{\footnotesize\ttfamily void ae\+::\+Instance\+::\+Add\+Extensions (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ const char $\ast$$>$ \&}]{extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Add to the list the extensions which will be activated. 
+
+Example 
+\begin{DoxyCode}
+\hyperlink{classae_1_1_instance}{ae::Instance} instance;
+std::vector<const char *> extensions =
+\{VK\_KHR\_SURFACE\_EXTENSION\_NAME\};
+instance.\hyperlink{classae_1_1_instance_a880ed1eaf9b821ac616865821a5f15ef}{AddExtensions}(extensions);
+\end{DoxyCode}
+ \hypertarget{classae_1_1_instance_ae00908ee44223a209184015514a35685}{}\label{classae_1_1_instance_ae00908ee44223a209184015514a35685} 
+\index{ae\+::\+Instance@{ae\+::\+Instance}!Add\+Validations@{Add\+Validations}}
+\index{Add\+Validations@{Add\+Validations}!ae\+::\+Instance@{ae\+::\+Instance}}
+\subsubsection{\texorpdfstring{Add\+Validations()}{AddValidations()}}
+{\footnotesize\ttfamily void ae\+::\+Instance\+::\+Add\+Validations (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ const char $\ast$$>$ \&}]{validations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Add to the list validations which will be activated. 
+
+Example 
+\begin{DoxyCode}
+\hyperlink{classae_1_1_instance}{ae::Instance} instance;
+std::vector<const char *> validation =
+\{VK\_LAYER\_LUNARG\_standard\_validation\};
+instance.\hyperlink{classae_1_1_instance_a880ed1eaf9b821ac616865821a5f15ef}{AddExtensions}(validation);
+\end{DoxyCode}
+ \hypertarget{classae_1_1_instance_aa76edbae91362fadb47c743b6f4298be}{}\label{classae_1_1_instance_aa76edbae91362fadb47c743b6f4298be} 
+\index{ae\+::\+Instance@{ae\+::\+Instance}!Missing\+Validations@{Missing\+Validations}}
+\index{Missing\+Validations@{Missing\+Validations}!ae\+::\+Instance@{ae\+::\+Instance}}
+\subsubsection{\texorpdfstring{Missing\+Validations()}{MissingValidations()}}
+{\footnotesize\ttfamily std\+::vector$<$ const char $\ast$ $>$ ae\+::\+Instance\+::\+Missing\+Validations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+What are the missing validations layers Vulkan. 
+
+Compare \hyperlink{classae_1_1_instance_a356579044ea77c9cc14723f0b7d7a52d}{validations()} with \hyperlink{classae_1_1_instance_a6b46129d8c0b5d204eab1a1cecb5b221}{Available\+Validations()}. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classae_1_1_instance_a51fa0c0f46de73754c52841fc458d4ac}{}\label{classae_1_1_instance_a51fa0c0f46de73754c52841fc458d4ac} 
+\index{ae\+::\+Instance@{ae\+::\+Instance}!k\+Default\+Validations@{k\+Default\+Validations}}
+\index{k\+Default\+Validations@{k\+Default\+Validations}!ae\+::\+Instance@{ae\+::\+Instance}}
+\subsubsection{\texorpdfstring{k\+Default\+Validations}{kDefaultValidations}}
+{\footnotesize\ttfamily const std\+::vector$<$const char $\ast$$>$ ae\+::\+Instance\+::k\+Default\+Validations}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"VK\_LAYER\_LUNARG\_standard\_validation"}\}
+\end{DoxyCode}
+
+
+Suggest validations layers. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/instance.\+h\item 
+src/instance.\+cc\end{DoxyCompactItemize}
