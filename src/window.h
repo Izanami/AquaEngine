@@ -31,13 +31,13 @@ namespace ae {
 /// \code
 ///     auto window = ae::Window::Create();
 ///     while(window->PoolEvent()) {}
-/// \encode
+/// \endcode
 class Window {
    public:
-    /// \brief Default width size window
+    /// Default width size window
     const int kWidth = 800;
 
-    /// \brief Default height size window
+    /// Default height size window
     const int kHeight = 600;
 
     Window() = default;
@@ -48,15 +48,16 @@ class Window {
     Window &operator=(Window &&) = delete;
     Window(Window &&) = delete;
 
-    /// \brief Return the window display
+    /// \brief The more adapt window displayer
     ///
     /// Prefer this function to direct of window class
+    /// \return ae::Window instance
     static std::unique_ptr<Window> Create() noexcept;
 
-    /// \brief Poll for and process events
+    /// Poll for and process events
     virtual bool PoolEvent() noexcept;
 
-    /// \brief Returns the extensions used
+    /// Returns the extensions used
     virtual std::vector<const char *> extensions() const noexcept;
 };
 

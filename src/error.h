@@ -63,7 +63,7 @@ class Error {
 
     /// \brief Analyse the errors for more details.
     ///
-    /// \returns The first element is for humans and the second is for the
+    /// \return The first element is for humans and the second is for the
     /// program.
     ///
     /// Example :
@@ -75,9 +75,10 @@ class Error {
     /// \endcode
     virtual std::pair<std::string, error::Flags> DiagnosticAll() noexcept;
 
-    /// \brief Return human-readble message.
+    /// \brief Human-readble message.
     ///
     /// Alias to DiagnosticAll().first
+    /// \return String
     virtual std::string Message() noexcept;
 
    protected:

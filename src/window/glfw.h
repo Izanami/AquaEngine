@@ -45,6 +45,7 @@ class GLFW final : public Window {
     /// Returns list required extensions.
     ///
     /// \sa ae::Instance
+    /// \return String vector
     std::vector<const char *> extensions() const noexcept override;
 
    private:

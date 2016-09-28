@@ -27,6 +27,7 @@
 namespace ae::error {
 
 /// \brief Handle vulkan errors.
+///
 /// \sa ae::Error
 ///
 /// Example :
@@ -39,12 +40,13 @@ namespace ae::error {
 ///
 ///    if(error.IsError())
 ///        throw error.DiagnosticAll().first;
-/// \encode
+/// \endcode
 class Vulkan final : public ae::Error {
    public:
     Vulkan();
     virtual ~Vulkan();
 
+    //! \{
     Vulkan(const Vulkan &);
     Vulkan(Vulkan &&);
     Vulkan &operator=(const Vulkan &);
@@ -53,25 +55,38 @@ class Vulkan final : public ae::Error {
     explicit Vulkan(VkResult);
     explicit Vulkan(VkResult, std::shared_ptr<ae::Instance>);
     explicit Vulkan(std::shared_ptr<ae::Instance>);
+    //! \}
 
+    /// Returns result code.
     VkResult result() const noexcept;
+
+    /// Set result code.
     void set_result(const VkResult) noexcept;
 
+    /// Returns ae::Instance pointer used to diangostics.
     std::shared_ptr<ae::Instance> instance() const noexcept;
+
+    /// \brief Set pointer to the ae::Instance instance.
+    ///
+    /// Required for diagnostics relevant.
     void set_instance(std::shared_ptr<ae::Instance>) noexcept;
 
     /// \brief Analyse the errors for more details.
     /// \sa ae::Error::DiagnosticAll()
+    ///
+    /// \return See error::DiagnosticAll()
     std::pair<std::string, Flags> DiagnosticAll() noexcept override;
 
     /// \brief Analyse extensions vulkan.
     /// \sa ae::Error::DiagnisticAll()
+    ///
+    /// \return See error::DiagnosticAll()
     std::pair<std::string, Flags> DiagnosticExtensions() noexcept;
 
-    /// \brief Returns message errors.
+    /// Returns message errors.
     const std::string ToString() const noexcept;
 
-    /// \brief Returns the corresponding string of the code.
+    /// Returns the corresponding string of the code.
     static constexpr const char *ToString(const VkResult code) noexcept {
         switch (code) {
             case VK_SUCCESS:
@@ -181,10 +196,10 @@ class Vulkan final : public ae::Error {
     }
 
    private:
-    /// \brief The code error.
+    /// The code error.
     VkResult result_ = VK_SUCCESS;
 
-    /// \brief Used to analyse errors.
+    /// Used to analyse errors.
     std::shared_ptr<ae::Instance> instance_ = std::make_shared<ae::Instance>();
 };
 } /* ae::error */

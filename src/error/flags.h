@@ -34,7 +34,7 @@ constexpr int CodeFlagsMax = 8;
 /// \endcode
 struct Flags : public std::bitset<CodeFlagsMax> {
    public:
-    /// Bits positions in ae::error::Flags.
+    /// Bits positions in std::bitset.
     enum class Code { kSuccess = 0, kVerbose = 1 };
 
     /// Base class of ae::error::Flags.

@@ -37,11 +37,11 @@ namespace ae {
 /// \endcode
 class Instance {
    public:
-    /// \brief Suggest validations layers.
+    /// Suggest validations layers.
     const std::vector<const char *> kDefaultValidations = {
         "VK_LAYER_LUNARG_standard_validation"};
 
-    /// \brief If true, enable default validations when Create().
+    /// If true, enable default validations when Create().
     bool enable_default_validations = true;
 
     //! \{
@@ -54,10 +54,10 @@ class Instance {
     Instance &operator=(Instance &&);
     //! \}
 
-    /// \brief Create vulkan instance.
+    /// Create vulkan instance.
     VkResult Create() noexcept;
 
-    /// \brief Returns a copy extensions.
+    /// Returns a copy extensions.
     std::vector<const char *> extensions() const noexcept;
 
     /// \brief Add to the list the extensions which will be activated.
@@ -72,17 +72,19 @@ class Instance {
     void AddExtensions(
         const std::vector<const char *> & /* List of extensions */) noexcept;
 
-    /// \brief Returns list of available extensions.
+    /// Returns list of available extensions.
     std::vector<VkExtensionProperties> AvailableExtensions() const noexcept;
 
-    /// \brief Returns list of available extenions with only the name.
+    /// Returns list of available extenions with only the name.
     std::vector<const char *> AvailableExtensionsName() const noexcept;
 
     /// \brief What are the missing extensions Vulkan.
+    ///
     /// Compare extensions() with AvailableExtensions().
+    /// \return String vector
     std::vector<const char *> MissingExtensions() const noexcept;
 
-    ///  \brief Returns a copy validations layers
+    ///  Returns a copy validations layers
     std::vector<const char *> validations() const noexcept;
 
     /// \brief Add to the list validations which will be activated.
@@ -92,7 +94,7 @@ class Instance {
     ///   ae::Instance instance;
     ///   std::vector<const char *> validation =
     ///   {VK_LAYER_LUNARG_standard_validation};
-    ///   instance.AddExtensions(validation);
+    ///   instance.AddValidations(validation);
     /// \endcode
     void AddValidations(
         const std::vector<const char *> & /* List of validations */) noexcept;
@@ -101,29 +103,30 @@ class Instance {
     /// \sa ae::Instance::kDefaultValidations
     void AddDefaultValidations() noexcept;
 
-    /// \brief Returns list of available validations layers.
+    /// Returns list of available validations layers.
     std::vector<VkLayerProperties> AvailableValidations() const noexcept;
 
-    /// \brief Returns list of available validations layers with only the name.
+    /// Returns list of available validations layers with only the name.
     std::vector<const char *> AvailableValidationsName() const noexcept;
 
-    /// \brief  What are the missing validations layers Vulkan.
+    /// \brief What are the missing validations layers Vulkan.
     ///
     /// Compare validations() with AvailableValidations().
+    /// \return String vector
     std::vector<const char *> MissingValidations() const noexcept;
 
    private:
-    /// \brief Pointer to vulkan instance. It initialize with Create().
+    /// Pointer to vulkan instance. It initialize with Create().
     std::shared_ptr<VkInstance> vk_instance_ = std::make_shared<VkInstance>();
 
-    /// \brief Opaque handle to a instance vulkan object
+    /// Opaque handle to a instance vulkan object
     std::shared_ptr<VkInstanceCreateInfo> vk_instance_informations_ =
         std::make_shared<VkInstanceCreateInfo>();
 
-    /// \brief Store list Vulkan extensions
+    /// Store list Vulkan extensions
     std::vector<const char *> extensions_;
 
-    /// \brief Store list Vulkan validations layers
+    ///  Store list Vulkan validations layers
     std::vector<const char *> validations_;
 };
 } /* ae  */
