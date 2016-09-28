@@ -15,37 +15,31 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "flags.h"
-
 namespace ae::error {
 Flags::Flags() { SetSuccess(); }
 Flags::~Flags() {}
 
-Flags::Flags(const Flags &diagnostic) : std::bitset<CodeFlagsMax>(diagnostic) {}
+Flags::Flags(const Flags &diagnostic) : base(diagnostic) {}
 
-Flags::Flags(Flags &&diagnostic)
-    : std::bitset<CodeFlagsMax>(std::move(diagnostic)) {}
+Flags::Flags(Flags &&diagnostic) : base(std::move(diagnostic)) {}
 
 Flags &Flags::operator=(const Flags &diagnostic) {
-    std::bitset<CodeFlagsMax>::operator=(diagnostic);
+    base::operator=(diagnostic);
     return *this;
 }
 
 Flags &Flags::operator=(Flags &&diagnostic) {
-    std::bitset<CodeFlagsMax>::operator=(std::move(diagnostic));
+    base::operator=(std::move(diagnostic));
     return *this;
 }
 
 /* Success */
-void Flags::SetSuccess() noexcept {
-    set(static_cast<int>(CodeFlags::kSuccess));
-}
+void Flags::SetSuccess() noexcept { set(static_cast<int>(Code::kSuccess)); }
 
-void Flags::ResetSuccess() noexcept {
-    reset(static_cast<int>(CodeFlags::kSuccess));
-}
+void Flags::ResetSuccess() noexcept { reset(static_cast<int>(Code::kSuccess)); }
 
 bool Flags::IsSuccess() const noexcept {
-    return test(static_cast<int>(CodeFlags::kSuccess));
+    return test(static_cast<int>(Code::kSuccess));
 }
 
 /* Error */
@@ -54,14 +48,10 @@ void Flags::ResetError() noexcept { SetSuccess(); }
 bool Flags::IsError() const noexcept { return !IsSuccess(); }
 
 /* Verbose */
-void Flags::SetVerbose() noexcept {
-    set(static_cast<int>(CodeFlags::kVerbose));
-}
-void Flags::ResetVerbose() noexcept {
-    reset(static_cast<int>(CodeFlags::kVerbose));
-}
+void Flags::SetVerbose() noexcept { set(static_cast<int>(Code::kVerbose)); }
+void Flags::ResetVerbose() noexcept { reset(static_cast<int>(Code::kVerbose)); }
 bool Flags::IsVerbose() const noexcept {
-    return test(static_cast<int>(CodeFlags::kVerbose));
+    return test(static_cast<int>(Code::kVerbose));
 }
 
 } /* ae::error */

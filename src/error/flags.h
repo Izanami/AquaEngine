@@ -20,38 +20,61 @@
 #include <bitset>
 namespace ae::error {
 
-// Number of bits in ae::error::Flags
+/// Number of bits in ae::error::Flags.
 constexpr int CodeFlagsMax = 8;
 
-// Bits positions in ae::error::Flags
-enum class CodeFlags { kSuccess = 0, kVerbose };
-
-// Bit state flags of the error
-// Example :
-/*
-    ae::error::Flags flags;
-    if(random_number % 2)
-        flags.SetError();
- */
+/// \brief Bit state flags of the error.
+///
+/// Example :
+///
+/// \code
+///    ae::error::Flags flags;
+///    if(random_number % 2)
+///        flags.SetError();
+/// \endcode
 struct Flags : public std::bitset<CodeFlagsMax> {
+   public:
+    /// Bits positions in ae::error::Flags.
+    enum class Code { kSuccess = 0, kVerbose = 1 };
+
+    /// Base class of ae::error::Flags.
+    using base = std::bitset<CodeFlagsMax>;
+
     Flags();
     virtual ~Flags();
 
+    //! \{
     Flags(const Flags &);
     Flags(Flags &&);
     Flags &operator=(const Flags &);
     Flags &operator=(Flags &&);
+    //! \}
 
+    /// Set the kSuccess bit flag to true.
     void SetSuccess() noexcept;
+
+    /// Set the kSuccess bit flag to false.
     void ResetSuccess() noexcept;
+
+    /// Returns the kSuccess bit flag.
     bool IsSuccess() const noexcept;
 
+    /// Alias to ResetSuccess().
     void SetError() noexcept;
+
+    /// Alias to SetSuccess().
     void ResetError() noexcept;
+
+    /// Invert IsSuccess().
     bool IsError() const noexcept;
 
+    /// Set the kVerbose bit flag to true.
     void SetVerbose() noexcept;
+
+    /// Set the kVerbose bit flag to false.
     void ResetVerbose() noexcept;
+
+    /// Returns the kVerbose bit flag.
     bool IsVerbose() const noexcept;
 };
 

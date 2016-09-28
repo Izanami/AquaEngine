@@ -1,8 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_application_test.html" title="ApplicationTest" alt="" coords="103,5,215,32"/>
-<area shape="rect" id="node3" href="$class_error_flags_test.html" title="ErrorFlagsTest" alt="" coords="105,56,213,83"/>
-<area shape="rect" id="node4" href="$class_error_test.html" title="ErrorTest" alt="" coords="121,107,197,133"/>
-<area shape="rect" id="node5" href="$class_error_vulkan_test.html" title="ErrorVulkanTest" alt="" coords="101,157,217,184"/>
-<area shape="rect" id="node6" href="$class_instance_test.html" title="InstanceTest" alt="" coords="110,208,209,235"/>
-<area shape="rect" id="node7" href="$class_window_test.html" title="WindowTest" alt="" coords="113,259,206,285"/>
-</map>

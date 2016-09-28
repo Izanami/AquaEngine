@@ -25,10 +25,10 @@ struct DemoApp : public ae::Application {
     virtual ~DemoApp();
 
    protected:
-    std::shared_ptr<ae::error::Vulkan> error_vulkan_ =
-        std::make_shared<ae::error::Vulkan>();
-    std::shared_ptr<ae::Instance> instance_ = std::make_shared<ae::Instance>();
-    std::unique_ptr<ae::Window> window_ = ae::Window::Create();
+    std::shared_ptr<ae::error::Vulkan> error_vulkan_{
+        std::make_shared<ae::error::Vulkan>()};
+    std::shared_ptr<ae::Instance> instance_{std::make_shared<ae::Instance>()};
+    std::unique_ptr<ae::Window> window_{ae::Window::Create()};
 };
 
 DemoApp::DemoApp() : ae::Application() {

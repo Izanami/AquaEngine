@@ -24,19 +24,27 @@
 
 namespace ae {
 
-// GLDW display
+/// \brief GLDW display
+///
 // For more informations view Window class
 class GLFW final : public Window {
    public:
     GLFW();
     virtual ~GLFW() = default;
 
+    //! \{
     GLFW(const GLFW &) = delete;
     GLFW &operator=(const GLFW &) = delete;
-    GLFW &operator=(GLFW &&) = default;
+    GLFW &operator=(GLFW &&) = delete;
     GLFW(GLFW &&);
+    //! \}
 
+    /// Poll for currently pending events.
     bool PoolEvent() noexcept override;
+
+    /// Returns list required extensions.
+    ///
+    /// \sa ae::Instance
     std::vector<const char *> extensions() const noexcept override;
 
    private:

@@ -25,6 +25,11 @@
 
 namespace ae {
 
+/// Construct an version number.
+constexpr int MakeVersion(const int major, const int minor, const int patch) {
+    return (((major) << 22) | ((minor) << 12) | (patch));
+}
+
 /// \brief Base class to create AquaEngine application
 ///
 ///  Example :
@@ -35,11 +40,11 @@ namespace ae {
 ///         virtual ~DemoApp();
 ///
 ///        protected:
-///         std::shared_ptr<ae::error::Vulkan> error_vulkan_ =
-///             std::make_shared<ae::error::Vulkan>();
-///         std::shared_ptr<ae::Instance> instance_ =
-///         std::make_shared<ae::Instance>();
-///         std::unique_ptr<ae::Window> window_ = ae::Window::Create();
+///         std::shared_ptr<ae::error::Vulkan> error_vulkan_{
+///             std::make_shared<ae::error::Vulkan>()};
+///         std::shared_ptr<ae::Instance> instance_{
+///         std::make_shared<ae::Instance>()};
+///         std::unique_ptr<ae::Window> window_{ae::Window::Create()};
 ///     };
 ///
 ///     DemoApp::DemoApp() : ae::Application() {
@@ -59,6 +64,16 @@ namespace ae {
 /// \endcode
 class Application {
    public:
+    /// Base populated informations.
+    inline static const VkApplicationInfo kDefaultInformations{
+        VK_STRUCTURE_TYPE_APPLICATION_INFO,
+        nullptr,
+        "",
+        MakeVersion(1, 0, 0),
+        "AquaEngine",
+        MakeVersion(1, 0, 0),
+        VK_API_VERSION_1_0};
+
     Application();
     virtual ~Application();
 
@@ -67,25 +82,29 @@ class Application {
     Application &operator=(Application &&) = delete;
     Application(Application &&) = delete;
 
+    /// Returns a copy of the application name.
     std::string name() const noexcept;
+
+    /// Set the application name.
     void set_name(std::string) noexcept;
 
+    /// Returns a copy of the application versions.
     int version() const noexcept;
+
+    /// Set the application version with integer.
     void set_version(const int) noexcept;
+
+    /// Helper to set the application version.
     void set_version(const int major, const int minor,
                      const int patch) noexcept;
 
+    /// Returns smart-pointer of Vulkan informations.
     const std::shared_ptr<VkApplicationInfo> informations() const noexcept;
 
    private:
     std::shared_ptr<VkApplicationInfo> vulkan_info_ =
-        std::make_shared<VkApplicationInfo>();
+        std::make_shared<VkApplicationInfo>(kDefaultInformations);
 };
-
-/// \brief Construct an version number.
-constexpr int MakeVersion(const int major, const int minor, const int patch) {
-    return (((major) << 22) | ((minor) << 12) | (patch));
-}
 
 } /* ae  */
 #endif /* AE_APPLICATION_H_ */

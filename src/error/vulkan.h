@@ -26,19 +26,20 @@
 
 namespace ae::error {
 
-// Handle vulkan errors
-// You SHOULD read ae::Error
-//
-// Example :
-/*
-    auto instance = std::make_shared<ae::Instance>();
-    ae::Error::Vulkan error;
-    error.set_instance(instance);
-    error.set_result(instance->Create());
-
-    if(error.IsError())
-        throw error.DiagnosticAll().first;
- */
+/// \brief Handle vulkan errors.
+/// \sa ae::Error
+///
+/// Example :
+///
+/// \code
+///    auto instance = std::make_shared<ae::Instance>();
+///    ae::Error::Vulkan error;
+///    error.set_instance(instance);
+///    error.set_result(instance->Create());
+///
+///    if(error.IsError())
+///        throw error.DiagnosticAll().first;
+/// \encode
 class Vulkan final : public ae::Error {
    public:
     Vulkan();
@@ -59,16 +60,18 @@ class Vulkan final : public ae::Error {
     std::shared_ptr<ae::Instance> instance() const noexcept;
     void set_instance(std::shared_ptr<ae::Instance>) noexcept;
 
-    // Analyse the errors for more details.
-    // You SHOULD read ae::Error::DiagnosticAll()
+    /// \brief Analyse the errors for more details.
+    /// \sa ae::Error::DiagnosticAll()
     std::pair<std::string, Flags> DiagnosticAll() noexcept override;
 
-    // Analyse extensions vulkan.
+    /// \brief Analyse extensions vulkan.
+    /// \sa ae::Error::DiagnisticAll()
     std::pair<std::string, Flags> DiagnosticExtensions() noexcept;
 
-    // Return message errors
+    /// \brief Returns message errors.
     const std::string ToString() const noexcept;
 
+    /// \brief Returns the corresponding string of the code.
     static constexpr const char *ToString(const VkResult code) noexcept {
         switch (code) {
             case VK_SUCCESS:
@@ -178,10 +181,10 @@ class Vulkan final : public ae::Error {
     }
 
    private:
-    // The code error
+    /// \brief The code error.
     VkResult result_ = VK_SUCCESS;
 
-    // Used to analyse errors
+    /// \brief Used to analyse errors.
     std::shared_ptr<ae::Instance> instance_ = std::make_shared<ae::Instance>();
 };
 } /* ae::error */

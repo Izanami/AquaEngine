@@ -52,13 +52,18 @@ class Error {
     Error &operator=(Error &&) = delete;
     virtual ~Error();
 
+    /// Returns the kSuccess bit flag.
     bool IsSuccess() const noexcept;
+
+    /// Returns invert of the kSuccess bit flag.
     bool IsError() const noexcept;
 
+    /// Returns the bits flags.
     error::Flags flags() const noexcept;
 
     /// \brief Analyse the errors for more details.
-    /// \returns a The first element is for humans and the second is for the
+    ///
+    /// \returns The first element is for humans and the second is for the
     /// program.
     ///
     /// Example :
@@ -71,11 +76,12 @@ class Error {
     virtual std::pair<std::string, error::Flags> DiagnosticAll() noexcept;
 
     /// \brief Return human-readble message.
+    ///
     /// Alias to DiagnosticAll().first
     virtual std::string Message() noexcept;
 
    protected:
-    /// \brief Flags state
+    /// \brief Flags state.
     /// \sa ae::error::Flags
     error::Flags flags_;
 };

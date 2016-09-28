@@ -14,10 +14,13 @@ static_assert(std::is_default_constructible<Instance>::value);
 static_assert(std::is_move_constructible<Instance>::value);
 static_assert(std::is_copy_constructible<Instance>::value);
 
+/// The fixture for testing class Instance.
 class InstanceTest : public ::testing::Test {
    protected:
+    /// Set fixture
     virtual void SetUp() { instance = std::make_unique<Instance>(); }
 
+    /// Pointer to an instance class test
     std::unique_ptr<Instance> instance = nullptr;
 };
 

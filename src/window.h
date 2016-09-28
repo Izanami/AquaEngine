@@ -22,18 +22,22 @@
 
 namespace ae {
 
-// Interface class for window display
+/// \brief Interface class for window display
+///
 // Use Create() for default behavior
-//
-// Example :
-// auto window = ae::Window::Create();
-// while(window->PoolEvent()) {}
+///
+/// Example :
+///
+/// \code
+///     auto window = ae::Window::Create();
+///     while(window->PoolEvent()) {}
+/// \encode
 class Window {
    public:
-    // Default width size window
+    /// \brief Default width size window
     const int kWidth = 800;
 
-    // Default height size window
+    /// \brief Default height size window
     const int kHeight = 600;
 
     Window() = default;
@@ -44,14 +48,15 @@ class Window {
     Window &operator=(Window &&) = delete;
     Window(Window &&) = delete;
 
-    // Return the window display
-    // Prefer this function to direct of window class
+    /// \brief Return the window display
+    ///
+    /// Prefer this function to direct of window class
     static std::unique_ptr<Window> Create() noexcept;
 
-    // Poll for and process events
+    /// \brief Poll for and process events
     virtual bool PoolEvent() noexcept;
 
-    // Returns the extensions used
+    /// \brief Returns the extensions used
     virtual std::vector<const char *> extensions() const noexcept;
 };
 
