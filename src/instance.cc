@@ -75,6 +75,7 @@ VkResult Instance::Create() noexcept {
     vk_instance_informations_->ppEnabledExtensionNames = extensions_.data();
 
 #ifndef DISCARD
+#warning Disable validation layer. #22
     vk_instance_informations_->enabledLayerCount =
 	static_cast<uint32_t>(validations_.size());
     vk_instance_informations_->ppEnabledLayerNames = validations_.data();
