@@ -70,15 +70,12 @@ VkResult Instance::Create() noexcept {
 	AddExtensions(extensions_validations);
     }
 
-    vk_instance_informations_->enabledExtensionCount =
-	static_cast<uint32_t>(extensions_.size());
-    vk_instance_informations_->ppEnabledExtensionNames = extensions_.data();
-
 #ifndef DISCARD
-#warning Disable validation layer. #22
     vk_instance_informations_->enabledLayerCount =
 	static_cast<uint32_t>(validations_.size());
     vk_instance_informations_->ppEnabledLayerNames = validations_.data();
+#else
+#warning Disable validation layer. #22
 #endif
 
     auto result = vkCreateInstance(vk_instance_informations_.get(), nullptr,
