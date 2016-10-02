@@ -7,18 +7,21 @@ stages:
 
 build_job:
   stage: build
-  except: 
-    - fs-pages
   script:
     - cmake .
     - make
 
 test_job:
   stage: test
-  except: 
-    - fs-pages
   script:
   - export DISPLAY=:1
   - cmake .
   - make
   - ./ae-test
+
+documentation_job:
+  stage: deploy
+  script:
+  - cmake -DBUILD_DOCUMENTATION=ON .
+  - make doc
+  - surge -d aquaengine.surge.sh -p ./doc/html/
