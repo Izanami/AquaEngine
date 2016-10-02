@@ -2,8 +2,7 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-using namespace ae;
-
+namespace ae::test {
 static_assert(std::is_default_constructible<Error>::value);
 static_assert(!std::is_move_constructible<Error>::value);
 static_assert(!std::is_copy_constructible<Error>::value);
@@ -45,3 +44,4 @@ TEST_F(ErrorTest, DiagnosticAll) {
 }
 
 TEST_F(ErrorTest, Message) { ASSERT_EQ(error_success->Message(), "Success"); }
+} /* ae::test */

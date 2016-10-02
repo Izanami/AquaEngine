@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-using namespace ae;
+namespace ae::test {
 
 static_assert(std::is_default_constructible<Application>::value);
 static_assert(!std::is_move_constructible<Application>::value);
@@ -29,3 +29,4 @@ TEST_F(ApplicationTest, Version) {
 }
 
 TEST_F(ApplicationTest, Informations) { application->informations(); }
+} /* ae::test */

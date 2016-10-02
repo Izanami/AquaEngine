@@ -2,8 +2,7 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-using namespace ae;
-
+namespace ae::test {
 static_assert(std::is_default_constructible<error::Vulkan>::value);
 static_assert(std::is_move_constructible<error::Vulkan>::value);
 static_assert(std::is_copy_constructible<error::Vulkan>::value);
@@ -49,3 +48,4 @@ TEST_F(ErrorVulkanTest, DiagnosticExtensions) {
 
     ASSERT_EQ(vulkan_error->DiagnosticExtensions().second.IsError(), true);
 }
+} /* ae::test */

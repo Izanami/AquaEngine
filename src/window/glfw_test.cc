@@ -4,8 +4,7 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-using namespace ae;
-
+namespace ae::test {
 static_assert(std::is_default_constructible<GLFW>::value);
 static_assert(std::is_move_constructible<GLFW>::value);
 static_assert(!std::is_copy_constructible<GLFW>::value);
@@ -18,11 +17,13 @@ class GLFWTest : public ::testing::Test {
 };
 
 TEST_F(GLFWTest, Move) { ASSERT_TRUE(window->PoolEvent()); }
+
 TEST_F(GLFWTest, PoolEvent) {
     GLFW window_move(std::move(*window.get()));
     ASSERT_TRUE(window_move.PoolEvent());
 }
 
 TEST_F(GLFWTest, Extensions) { ASSERT_GT(window->extensions().size(), 0); }
+} /* ae::test */
 
 #endif

@@ -8,8 +8,7 @@
 #endif
 #endif
 
-using namespace ae;
-
+namespace ae::test {
 static_assert(std::is_default_constructible<Instance>::value);
 static_assert(std::is_move_constructible<Instance>::value);
 static_assert(std::is_copy_constructible<Instance>::value);
@@ -83,3 +82,4 @@ TEST_F(InstanceTest, DefaultValidations) {
     instance->AddDefaultValidations();
     ASSERT_GT(instance->validations().size(), 0);
 }
+} /* ae::test */
