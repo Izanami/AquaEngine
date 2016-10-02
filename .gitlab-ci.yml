@@ -24,4 +24,5 @@ documentation_job:
   script:
   - cmake -DBUILD_DOCUMENTATION=ON .
   - make doc
+  - echo $SURGE_TOKEN
   - surge -d aquaengine.surge.sh -p ./doc/html/ --token $SURGE_TOKEN
