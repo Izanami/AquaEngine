@@ -48,12 +48,6 @@ class Window {
     Window &operator=(Window &&) = delete;
     Window(Window &&) = delete;
 
-    /// \brief The more adapt window displayer
-    ///
-    /// Prefer this function to direct of window class
-    /// \return ae::Window instance
-    static std::unique_ptr<Window> Create() noexcept;
-
     /// Poll for and process events
     virtual bool PoolEvent() noexcept;
 

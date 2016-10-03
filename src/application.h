@@ -43,19 +43,19 @@ constexpr int MakeVersion(const int major, const int minor, const int patch) {
 ///         ae::error::Vulkan> error_vulkan_;
 ///         std::shared_ptr<ae::Instance> instance_{
 ///         std::make_shared<ae::Instance>()};
-///         std::unique_ptr<ae::Window> window_{ae::Window::Create()};
+///         ae::window::DefaultWindow window_;
 ///     };
 ///
 ///     DemoApp::DemoApp() : ae::Application() {
 ///         set_name("Demo AquaEngine");
 ///         set_version(1, 0, 0);
-///         instance_->AddExtensions(window_->extensions());
+///         instance_->AddExtensions(window_.extensions());
 ///
 ///         error_vulkan_.set_instance(instance_);
 ///         error_vulkan_.set_result(instance_->Create());
 ///         if (error_vulkan_.flags.IsError()) throw error_vulkan_.Message();
 ///
-///         while (window_->PoolEvent()) {
+///         while (window_.PoolEvent()) {
 ///         };
 ///     }
 ///

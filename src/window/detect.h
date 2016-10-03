@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "window.h"
+#ifdef GLFW_VERSION_3
+#include "glfw.h"
+#endif
 
-namespace ae {
-
-bool Window::PoolEvent() noexcept { return false; }
-
-std::vector<const char *> Window::extensions() const noexcept {
-    return std::vector<const char *>();
-}
-
-} /* ae */
+namespace ae::window {
+#ifdef GLFW_VERSION_3
+using DefaultWindow = GLFW;
+#else
+using DefaultWindow = Window;
+#endif
+} /* ae::window */
