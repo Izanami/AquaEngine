@@ -34,10 +34,10 @@ struct DemoApp : public ae::Application {
 DemoApp::DemoApp() : ae::Application() {
     set_name("Demo AquaEngine");
     set_version(1, 0, 0);
+
     error_vulkan_->set_instance(instance_);
     instance_->AddExtensions(window_->extensions());
 
-    instance_->Create();
     error_vulkan_->set_result(instance_->Create());
     if (error_vulkan_->flags().IsError())
         throw error_vulkan_->DiagnosticAll().first;
