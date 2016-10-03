@@ -5,23 +5,20 @@
 #include <memory>
 
 namespace ae::test {
-static_assert(std::is_default_constructible<GLFW>::value);
-static_assert(std::is_move_constructible<GLFW>::value);
-static_assert(!std::is_copy_constructible<GLFW>::value);
+static_assert(std::is_default_constructible<window::GLFW>::value);
+static_assert(std::is_move_constructible<window::GLFW>::value);
+static_assert(!std::is_copy_constructible<window::GLFW>::value);
 
 class GLFWTest : public ::testing::Test {
    protected:
-    virtual void SetUp() { window = std::make_unique<GLFW>(); }
+    virtual void SetUp() { window = std::make_unique<window::GLFW>(); }
 
-    std::unique_ptr<GLFW> window = nullptr;
+    std::unique_ptr<window::GLFW> window = nullptr;
 };
 
 TEST_F(GLFWTest, Move) { ASSERT_TRUE(window->PoolEvent()); }
 
-TEST_F(GLFWTest, PoolEvent) {
-    GLFW window_move(std::move(*window.get()));
-    ASSERT_TRUE(window_move.PoolEvent());
-}
+TEST_F(GLFWTest, PoolEvent) { ASSERT_TRUE(window->PoolEvent()); }
 
 TEST_F(GLFWTest, Extensions) { ASSERT_GT(window->extensions().size(), 0); }
 } /* ae::test */

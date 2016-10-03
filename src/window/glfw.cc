@@ -16,7 +16,7 @@
 
 #include "glfw.h"
 
-namespace ae {
+namespace ae::window {
 
 GLFW::GLFW() {
     glfwInit();

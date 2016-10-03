@@ -22,7 +22,7 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-namespace ae {
+namespace ae::window {
 
 /// \brief GLDW display
 ///
