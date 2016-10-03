@@ -20,9 +20,7 @@ namespace ae {
 Error::Error() {}
 Error::~Error() {}
 
-void Error::Diagnostic() noexcept {}
-
-std::string Error::Message() noexcept {
+std::string Error::ToString() noexcept {
     if (IsSuccess())
         return u8"Success";
     else

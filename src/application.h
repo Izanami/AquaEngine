@@ -21,7 +21,6 @@
 #include <memory>
 #include <string>
 #include "error/vulkan.h"
-#include "instance.h"
 
 namespace ae {
 
@@ -40,7 +39,6 @@ constexpr int MakeVersion(const int major, const int minor, const int patch) {
 ///         virtual ~DemoApp();
 ///
 ///        protected:
-///         ae::error::Vulkan> error_vulkan_;
 ///         ae::window::DefaultWindow window_;
 ///         std::shared_ptr<ae::Instance> instance_{
 ///         std::make_shared<ae::Instance>()};
@@ -51,9 +49,8 @@ constexpr int MakeVersion(const int major, const int minor, const int patch) {
 ///         SetVersion(1, 0, 0);
 ///         instance_->AddExtensions(window_.Extensions());
 ///
-///         error_vulkan_.SetInstance(instance_);
-///         error_vulkan_.set_result(instance_->Create());
-///         if (error_vulkan_.IsError()) throw error_vulkan_.Message();
+///         auto result = instance_->Create();
+///         if (result.IsError()) throw result.Message();
 ///
 ///         while (window_.PoolEvent()) {
 ///         };

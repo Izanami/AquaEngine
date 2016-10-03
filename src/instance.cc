@@ -59,7 +59,7 @@ Instance &Instance::operator=(Instance &&instance) {
     return *this;
 }
 
-VkResult Instance::Create() noexcept {
+error::Vulkan Instance::Create() noexcept {
     if (enable_default_validations) {
 	AddDefaultValidations();
     }
@@ -78,10 +78,8 @@ VkResult Instance::Create() noexcept {
 #pragma message("Disable validation layer. #22")
 #endif
 
-    auto result = vkCreateInstance(vk_instance_informations_.get(), nullptr,
-				   vk_instance_.get());
-
-    return result;
+    return error::Vulkan(vkCreateInstance(vk_instance_informations_.get(),
+					  nullptr, vk_instance_.get()));
 }
 
 void Instance::AddExtensions(

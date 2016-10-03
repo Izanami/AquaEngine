@@ -52,13 +52,10 @@ class Error : public error::Flags {
     Error &operator=(Error &&) = delete;
     virtual ~Error();
 
-    /// \brief Analyse the errors for more details.
-    virtual void Diagnostic() noexcept;
-
     /// \brief Human-readble message.
     ///
     /// \return String
-    virtual std::string Message() noexcept;
+    virtual std::string ToString() noexcept;
 };
 } /* ae */
 

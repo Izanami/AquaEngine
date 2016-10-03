@@ -16,7 +16,7 @@
 
 #include <stdexcept>
 #include "application.h"
-#include "error/vulkan.h"
+#include "instance.h"
 #include "window/detect.h"
 
 namespace {
@@ -25,7 +25,6 @@ struct DemoApp : public ae::Application {
     virtual ~DemoApp();
 
    protected:
-    ae::error::Vulkan error_vulkan_;
     ae::window::DefaultWindow window_;
     std::shared_ptr<ae::Instance> instance_{std::make_shared<ae::Instance>()};
 };
@@ -36,12 +35,8 @@ DemoApp::DemoApp() : ae::Application() {
 
     instance_->AddExtensions(window_.Extensions());
 
-    error_vulkan_.SetInstance(instance_);
-    error_vulkan_.SetResult(instance_->Create());
-    if (error_vulkan_.IsError()) {
-        error_vulkan_.Diagnostic();
-        throw error_vulkan_.Message();
-    }
+    auto result = instance_->Create();
+    if (error.IsError()) throw result.ToString();
 
     while (window_.PoolEvent()) {
     };

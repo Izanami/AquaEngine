@@ -18,36 +18,23 @@
 
 namespace ae::error {
 
-Vulkan::Vulkan(VkResult result, std::shared_ptr<ae::Instance> instance) {
-    SetResult(std::move(result));
-    SetInstance(std::move(instance));
-}
+Vulkan::Vulkan() {}
 
-Vulkan::Vulkan() : Vulkan(VK_SUCCESS, nullptr) {}
-
-Vulkan::Vulkan(VkResult result) : Vulkan(result, nullptr) {}
-
-Vulkan::Vulkan(std::shared_ptr<ae::Instance> instance)
-    : Vulkan(VK_SUCCESS, instance) {}
-
-Vulkan::Vulkan(Vulkan&& vulkan)
-    : result_(std::move(vulkan.result_)),
-      instance_(std::move(vulkan.instance_)) {}
-
-Vulkan& Vulkan::operator=(Vulkan&& vulkan) {
-    result_ = std::move(vulkan.result_);
-    instance_ = std::move(vulkan.instance_);
-    return *this;
-}
-
-Vulkan::Vulkan(const Vulkan& vulkan)
-    : result_(vulkan.result_), instance_(vulkan.instance_) {}
+Vulkan::Vulkan(Vulkan const& vulkan) : result_(vulkan.result_) {}
 
 Vulkan& Vulkan::operator=(const Vulkan& vulkan) {
     result_ = vulkan.result_;
-    instance_ = vulkan.instance_;
     return *this;
 }
+
+Vulkan::Vulkan(Vulkan&& vulkan) : result_(std::move(vulkan.result_)) {}
+
+Vulkan& Vulkan::operator=(Vulkan&& vulkan) {
+    result_ = std::move(vulkan.result_);
+    return *this;
+}
+
+Vulkan::Vulkan(VkResult result) : result_(result) {}
 
 Vulkan::~Vulkan() {}
 
@@ -63,34 +50,7 @@ void Vulkan::SetResult(const VkResult result) noexcept {
     message_ = ToString();
 }
 
-std::shared_ptr<ae::Instance> Vulkan::Instance() const noexcept {
-    return instance_;
-}
-
-void Vulkan::SetInstance(std::shared_ptr<ae::Instance> instance) noexcept {
-    instance_ = std::move(instance);
-}
-
-void Vulkan::Diagnostic() noexcept {
-    if (VK_ERROR_EXTENSION_NOT_PRESENT) DiagnosticExtensions();
-}
-
-void Vulkan::DiagnosticExtensions() noexcept {
-    auto missing_extensions = Instance()->MissingExtensions();
-    if (missing_extensions.size() > 0) {
-        SetResult(VK_ERROR_EXTENSION_NOT_PRESENT);
-        message_ += " [Missing extensions]";
-        for (const auto& extension : missing_extensions) {
-            message_ += " ";
-            message_ += extension;
-        }
-        return;
-    }
-}
-
-std::string Vulkan::Message() noexcept { return message_; }
-
-const std::string Vulkan::ToString() const noexcept {
+std::string Vulkan::ToString() noexcept {
     return std::string(ToString(result_));
 }
 

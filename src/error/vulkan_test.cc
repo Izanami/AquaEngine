@@ -27,26 +27,4 @@ TEST_F(ErrorVulkanTest, Result) {
     ASSERT_EQ(vulkan_error->Result(), VK_SUCCESS);
 }
 
-TEST_F(ErrorVulkanTest, Instance) {
-    auto instance = std::make_shared<Instance>();
-    vulkan_error->SetInstance(instance);
-    ASSERT_EQ(vulkan_error->Instance(), instance);
-}
-
-TEST_F(ErrorVulkanTest, DiagnosticExtensions) {
-    const std::vector<const char *> extensions = {"Buzz"};
-
-    auto instance = std::make_shared<Instance>();
-    vulkan_error->SetInstance(instance);
-    vulkan_error->DiagnosticExtensions();
-    ASSERT_EQ(vulkan_error->IsSuccess(), true);
-
-    instance->AddExtensions(extensions);
-    vulkan_error->DiagnosticExtensions();
-    ASSERT_EQ(vulkan_error->Message(),
-              "Vulkan : A requested extension is not supported [Missing "
-              "extensions] Buzz");
-
-    ASSERT_EQ(vulkan_error->IsError(), true);
-}
 } /* ae::test */

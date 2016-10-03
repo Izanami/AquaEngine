@@ -21,7 +21,6 @@
 #include <memory>
 #include <string>
 #include "../error.h"
-#include "../instance.h"
 
 namespace ae::error {
 
@@ -33,9 +32,7 @@ namespace ae::error {
 ///
 /// \code
 ///    auto instance = std::make_shared<ae::Instance>();
-///    ae::Error::Vulkan error;
-///    error.SetInstance(instance);
-///    error.SetResult(instance->Create());
+///    ae::Error::Vulkan error(instance->Create());
 ///
 ///    if(error.IsError())
 ///        throw error.Message();
@@ -52,8 +49,6 @@ class Vulkan final : public ae::Error {
     Vulkan &operator=(Vulkan &&);
 
     explicit Vulkan(VkResult);
-    explicit Vulkan(VkResult, std::shared_ptr<ae::Instance>);
-    explicit Vulkan(std::shared_ptr<ae::Instance>);
     //! \}
 
     /// Returns result code.
@@ -62,29 +57,8 @@ class Vulkan final : public ae::Error {
     /// Set result code.
     void SetResult(const VkResult) noexcept;
 
-    /// Returns ae::Instance pointer used to diangostics.
-    std::shared_ptr<ae::Instance> Instance() const noexcept;
-
-    /// \brief Set pointer to the ae::Instance instance.
-    ///
-    /// Required for diagnostics relevant.
-    void SetInstance(std::shared_ptr<ae::Instance>) noexcept;
-
-    /// \brief Analyse the errors for more details.
-    /// \sa ae::Error::DiagnosticAll()
-    void Diagnostic() noexcept override;
-
-    /// \brief Analyse extensions vulkan.
-    /// \sa ae::Error::DiagnisticAll()
-    void DiagnosticExtensions() noexcept;
-
-    /// \brief Human-readble message.
-    ///
-    /// \return String
-    std::string Message() noexcept override;
-
-    /// Returns message errors.
-    const std::string ToString() const noexcept;
+    // Returns human-readable message.
+    std::string ToString() noexcept override;
 
     /// Returns the corresponding string of the code.
     static constexpr const char *ToString(const VkResult code) noexcept {
@@ -198,9 +172,6 @@ class Vulkan final : public ae::Error {
    private:
     /// The code error.
     VkResult result_ = VK_SUCCESS;
-
-    /// Used to analyse errors.
-    std::shared_ptr<ae::Instance> instance_ = std::make_shared<ae::Instance>();
 
     /// The message generated.
     std::string message_ = ToString(VK_SUCCESS);

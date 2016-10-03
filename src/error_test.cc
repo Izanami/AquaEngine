@@ -34,5 +34,5 @@ class ErrorTest : public ::testing::Test {
     std::unique_ptr<MyError> error_error = nullptr;
 };
 
-TEST_F(ErrorTest, Message) { ASSERT_EQ(error_success->Message(), "Success"); }
+TEST_F(ErrorTest, ToString) { ASSERT_EQ(error_success->ToString(), "Success"); }
 } /* ae::test */
