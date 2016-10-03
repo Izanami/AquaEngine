@@ -54,7 +54,7 @@ constexpr int MakeVersion(const int major, const int minor, const int patch) {
 ///         instance_->AddExtensions(window_->extensions());
 ///
 ///         error_vulkan_->set_result(instance_->Create());
-///         if (error_vulkan_->IsError()) throw error_vulkan_->Message();
+///         if (error_vulkan_->flags.IsError()) throw error_vulkan_->Message();
 ///
 ///         while (window_->PoolEvent()) {
 ///         };

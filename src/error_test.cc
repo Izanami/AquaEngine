@@ -34,11 +34,6 @@ class ErrorTest : public ::testing::Test {
     std::unique_ptr<MyError> error_error = nullptr;
 };
 
-TEST_F(ErrorTest, State) {
-    ASSERT_EQ(error_success->IsSuccess(), true);
-    ASSERT_EQ(error_error->IsError(), true);
-}
-
 TEST_F(ErrorTest, DiagnosticAll) {
     ASSERT_EQ(error_success->DiagnosticAll().second.IsSuccess(), true);
 }

@@ -39,7 +39,8 @@ DemoApp::DemoApp() : ae::Application() {
 
     instance_->Create();
     error_vulkan_->set_result(instance_->Create());
-    if (error_vulkan_->IsError()) throw error_vulkan_->DiagnosticAll().first;
+    if (error_vulkan_->flags().IsError())
+        throw error_vulkan_->DiagnosticAll().first;
 
     while (window_->PoolEvent()) {
     };

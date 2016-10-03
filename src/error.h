@@ -40,7 +40,7 @@ namespace ae {
 ///     int main() {
 ///         MyError error(-1);
 ///
-///         if (error.IsError) throw error.Message();
+///         if (error.flags().IsError()) throw error.Message();
 ///     }
 /// \endcode
 class Error {
@@ -51,12 +51,6 @@ class Error {
     Error &operator=(const Error &) = delete;
     Error &operator=(Error &&) = delete;
     virtual ~Error();
-
-    /// Returns the kSuccess bit flag.
-    bool IsSuccess() const noexcept;
-
-    /// Returns invert of the kSuccess bit flag.
-    bool IsError() const noexcept;
 
     /// Returns the bits flags.
     error::Flags flags() const noexcept;
