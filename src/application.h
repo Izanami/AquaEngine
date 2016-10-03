@@ -20,7 +20,6 @@
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <string>
-#include "result/vulkan.h"
 
 namespace ae {
 

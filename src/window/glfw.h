@@ -24,7 +24,7 @@
 
 namespace ae::window {
 
-/// \brief GLDW display
+/// \brief GLFW display
 ///
 // For more informations view Window class
 class GLFW final : public Window {
