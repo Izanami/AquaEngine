@@ -20,7 +20,6 @@
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <string>
-#include <utility>
 #include "../error.h"
 #include "../instance.h"
 
@@ -35,11 +34,11 @@ namespace ae::error {
 /// \code
 ///    auto instance = std::make_shared<ae::Instance>();
 ///    ae::Error::Vulkan error;
-///    error.set_instance(instance);
-///    error.set_result(instance->Create());
+///    error.SetInstance(instance);
+///    error.SetResult(instance->Create());
 ///
 ///    if(error.IsError())
-///        throw error.DiagnosticAll().first;
+///        throw error.Message();
 /// \endcode
 class Vulkan final : public ae::Error {
    public:
@@ -73,15 +72,16 @@ class Vulkan final : public ae::Error {
 
     /// \brief Analyse the errors for more details.
     /// \sa ae::Error::DiagnosticAll()
-    ///
-    /// \return See error::DiagnosticAll()
-    std::pair<std::string, Flags> DiagnosticAll() noexcept override;
+    void DiagnosticAll() noexcept override;
 
     /// \brief Analyse extensions vulkan.
     /// \sa ae::Error::DiagnisticAll()
+    void DiagnosticExtensions() noexcept;
+
+    /// \brief Human-readble message.
     ///
-    /// \return See error::DiagnosticAll()
-    std::pair<std::string, Flags> DiagnosticExtensions() noexcept;
+    /// \return String
+    std::string Message() noexcept override;
 
     /// Returns message errors.
     const std::string ToString() const noexcept;
@@ -201,6 +201,9 @@ class Vulkan final : public ae::Error {
 
     /// Used to analyse errors.
     std::shared_ptr<ae::Instance> instance_ = std::make_shared<ae::Instance>();
+
+    /// The message generated.
+    std::string message_ = ToString(VK_SUCCESS);
 };
 } /* ae::error */
 

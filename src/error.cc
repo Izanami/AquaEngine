@@ -20,15 +20,13 @@ namespace ae {
 Error::Error() {}
 Error::~Error() {}
 
-error::Flags Error::Details() const noexcept { return flags_; }
+void Error::DiagnosticAll() noexcept {}
 
-std::pair<std::string, error::Flags> Error::DiagnosticAll() noexcept {
-    if (flags_.IsSuccess())
-        return std::make_pair("Success", flags_);
+std::string Error::Message() noexcept {
+    if (IsSuccess())
+        return u8"Success";
     else
-        return std::make_pair("Error", flags_);
+        return u8"Error";
 }
-
-std::string Error::Message() noexcept { return DiagnosticAll().first; }
 
 } /* ae */

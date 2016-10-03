@@ -38,8 +38,10 @@ DemoApp::DemoApp() : ae::Application() {
 
     error_vulkan_.SetInstance(instance_);
     error_vulkan_.SetResult(instance_->Create());
-    if (error_vulkan_.Details().IsError())
-        throw error_vulkan_.DiagnosticAll().first;
+    if (error_vulkan_.IsError()) {
+        error_vulkan_.DiagnosticAll();
+        throw error_vulkan_.Message();
+    }
 
     while (window_.PoolEvent()) {
     };

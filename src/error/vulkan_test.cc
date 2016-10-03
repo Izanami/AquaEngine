@@ -38,14 +38,14 @@ TEST_F(ErrorVulkanTest, DiagnosticExtensions) {
 
     auto instance = std::make_shared<Instance>();
     vulkan_error->SetInstance(instance);
-
-    ASSERT_EQ(vulkan_error->DiagnosticExtensions().second.IsSuccess(), true);
+    vulkan_error->DiagnosticExtensions();
+    ASSERT_EQ(vulkan_error->IsSuccess(), true);
 
     instance->AddExtensions(extensions);
-
-    ASSERT_EQ(vulkan_error->DiagnosticExtensions().first,
+    vulkan_error->DiagnosticExtensions();
+    ASSERT_EQ(vulkan_error->Message(),
               "Vulkan : A requested extension is not supported : Buzz");
 
-    ASSERT_EQ(vulkan_error->DiagnosticExtensions().second.IsError(), true);
+    ASSERT_EQ(vulkan_error->IsError(), true);
 }
 } /* ae::test */

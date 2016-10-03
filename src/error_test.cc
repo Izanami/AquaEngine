@@ -12,7 +12,7 @@ class MyError : public ae::Error {
    public:
     //! \{
     MyError(int code) {
-        if (code < 0) flags_.SetError();
+        if (code < 0) SetError();
     }
     ~MyError() {}
     //! \}
@@ -33,10 +33,6 @@ class ErrorTest : public ::testing::Test {
     /// Fixture when failed.
     std::unique_ptr<MyError> error_error = nullptr;
 };
-
-TEST_F(ErrorTest, DiagnosticAll) {
-    ASSERT_EQ(error_success->DiagnosticAll().second.IsSuccess(), true);
-}
 
 TEST_F(ErrorTest, Message) { ASSERT_EQ(error_success->Message(), "Success"); }
 } /* ae::test */

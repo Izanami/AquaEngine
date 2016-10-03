@@ -34,16 +34,16 @@ namespace ae {
 ///
 ///     MyError::MyError(int code) {
 ///         if(code < 0)
-///             flags_.SetError();
+///             SetError();
 ///     }
 ///
 ///     int main() {
 ///         MyError error(-1);
 ///
-///         if (error.flags().IsError()) throw error.Message();
+///         if (error.IsError()) throw error.Message();
 ///     }
 /// \endcode
-class Error {
+class Error : public error::Flags {
    public:
     Error();
     Error(const Error &) = delete;
@@ -52,13 +52,7 @@ class Error {
     Error &operator=(Error &&) = delete;
     virtual ~Error();
 
-    /// Returns the bits flags.
-    error::Flags Details() const noexcept;
-
     /// \brief Analyse the errors for more details.
-    ///
-    /// \return The first element is for humans and the second is for the
-    /// program.
     ///
     /// Example :
     ///
@@ -67,16 +61,12 @@ class Error {
     ///     if(diagnostic.second.is_error())
     ///     throw diagnostics.first
     /// \endcode
-    virtual std::pair<std::string, error::Flags> DiagnosticAll() noexcept;
+    virtual void DiagnosticAll() noexcept;
 
     /// \brief Human-readble message.
     ///
-    /// Alias to DiagnosticAll().first
     /// \return String
     virtual std::string Message() noexcept;
-
-    /// \sa ae::error::Flags
-    error::Flags flags_;
 };
 } /* ae */
 
