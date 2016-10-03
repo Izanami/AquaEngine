@@ -27,30 +27,30 @@ namespace ae {
 ///
 /// Example :
 /// \code
-///     class MyError : public ae::Error {
-///         MyError(int code);
-///         virtual MyError();
+///     class MyResult : public ae::Result {
+///         MyResult(int code);
+///         virtual MyResult();
 ///     }
 ///
-///     MyError::MyError(int code) {
+///     MyResult::MyResult(int code) {
 ///         if(code < 0)
-///             SetError();
+///             SetResult();
 ///     }
 ///
 ///     int main() {
-///         MyError result(-1);
+///         MyResult result(-1);
 ///
-///         if (result.IsError()) throw result.Message();
+///         if (result.IsResult()) throw result.Message();
 ///     }
 /// \endcode
-class Error : public result::Flags {
+class Result : public result::Flags {
    public:
-    Error();
-    Error(const Error &) = delete;
-    Error(Error &&) = delete;
-    Error &operator=(const Error &) = delete;
-    Error &operator=(Error &&) = delete;
-    virtual ~Error();
+    Result();
+    Result(const Result &) = delete;
+    Result(Result &&) = delete;
+    Result &operator=(const Result &) = delete;
+    Result &operator=(Result &&) = delete;
+    virtual ~Result();
 
     /// \brief Human-readble message.
     ///

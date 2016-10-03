@@ -17,14 +17,14 @@
 #include "result.h"
 
 namespace ae {
-Error::Error() {}
-Error::~Error() {}
+Result::Result() {}
+Result::~Result() {}
 
-std::string Error::ToString() noexcept {
+std::string Result::ToString() noexcept {
     if (IsSuccess())
         return u8"Success";
     else
-        return u8"Error";
+        return u8"Result";
 }
 
 } /* ae */

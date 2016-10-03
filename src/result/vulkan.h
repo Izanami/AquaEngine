@@ -26,18 +26,18 @@ namespace ae::result {
 
 /// \brief Handle vulkan results.
 ///
-/// \sa ae::Error
+/// \sa ae::Result
 ///
 /// Example :
 ///
 /// \code
 ///    auto instance = std::make_shared<ae::Instance>();
-///    ae::Error::Vulkan result(instance->Create());
+///    ae::Result::Vulkan result(instance->Create());
 ///
 ///    if(result.IsError())
 ///        throw result.Message();
 /// \endcode
-class Vulkan final : public ae::Error {
+class Vulkan final : public ae::Result {
    public:
     Vulkan();
     virtual ~Vulkan();
