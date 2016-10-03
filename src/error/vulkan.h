@@ -58,18 +58,18 @@ class Vulkan final : public ae::Error {
     //! \}
 
     /// Returns result code.
-    VkResult result() const noexcept;
+    VkResult Result() const noexcept;
 
     /// Set result code.
-    void set_result(const VkResult) noexcept;
+    void SetResult(const VkResult) noexcept;
 
     /// Returns ae::Instance pointer used to diangostics.
-    std::shared_ptr<ae::Instance> instance() const noexcept;
+    std::shared_ptr<ae::Instance> Instance() const noexcept;
 
     /// \brief Set pointer to the ae::Instance instance.
     ///
     /// Required for diagnostics relevant.
-    void set_instance(std::shared_ptr<ae::Instance>) noexcept;
+    void SetInstance(std::shared_ptr<ae::Instance>) noexcept;
 
     /// \brief Analyse the errors for more details.
     /// \sa ae::Error::DiagnosticAll()

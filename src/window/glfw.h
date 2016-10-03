@@ -46,7 +46,7 @@ class GLFW final : public Window {
     ///
     /// \sa ae::Instance
     /// \return String vector
-    std::vector<const char *> extensions() const noexcept override;
+    std::vector<const char *> Extensions() const noexcept override;
 
    private:
     struct window_deleter {

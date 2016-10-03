@@ -42,7 +42,7 @@ void GLFW::window_deleter::operator()(GLFWwindow* ptr) {
     glfwDestroyWindow(ptr);
 }
 
-std::vector<const char*> GLFW::extensions() const noexcept {
+std::vector<const char*> GLFW::Extensions() const noexcept {
     uint32_t count = 0;
     const char** extensions = nullptr;
     extensions = glfwGetRequiredInstanceExtensions(&count);

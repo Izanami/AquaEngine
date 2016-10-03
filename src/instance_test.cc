@@ -28,7 +28,7 @@ TEST_F(InstanceTest, Create) { instance->Create(); }
 TEST_F(InstanceTest, Extensions) {
     std::vector<const char*> extensions = {"Foo", "Baz"};
     instance->AddExtensions(extensions);
-    ASSERT_EQ(instance->extensions(), extensions);
+    ASSERT_EQ(instance->Extensions(), extensions);
 }
 
 TEST_F(InstanceTest, AvailableExtensions) {
@@ -52,8 +52,8 @@ TEST_F(InstanceTest, MissingExtensions) {
 TEST_F(InstanceTest, Validations) {
     std::vector<const char*> validations = {"Foo", "Baz"};
     instance->AddValidations(validations);
-    ASSERT_EQ(instance->validations(), validations);
-    ASSERT_EQ(instance->validations().size(), 2);
+    ASSERT_EQ(instance->Validations(), validations);
+    ASSERT_EQ(instance->Validations().size(), 2);
 }
 
 TEST_F(InstanceTest, AvailableValidation) {
@@ -80,6 +80,6 @@ TEST_F(InstanceTest, MissingValidations) {
 
 TEST_F(InstanceTest, DefaultValidations) {
     instance->AddDefaultValidations();
-    ASSERT_GT(instance->validations().size(), 0);
+    ASSERT_GT(instance->Validations().size(), 0);
 }
 } /* ae::test */

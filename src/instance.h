@@ -58,7 +58,7 @@ class Instance {
     VkResult Create() noexcept;
 
     /// Returns a copy extensions.
-    std::vector<const char *> extensions() const noexcept;
+    std::vector<const char *> Extensions() const noexcept;
 
     /// \brief Add to the list the extensions which will be activated.
     ///
@@ -85,7 +85,7 @@ class Instance {
     std::vector<const char *> MissingExtensions() const noexcept;
 
     ///  Returns a copy validations layers
-    std::vector<const char *> validations() const noexcept;
+    std::vector<const char *> Validations() const noexcept;
 
     /// \brief Add to the list validations which will be activated.
     ///

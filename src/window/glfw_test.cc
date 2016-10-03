@@ -20,7 +20,7 @@ TEST_F(GLFWTest, Move) { ASSERT_TRUE(window->PoolEvent()); }
 
 TEST_F(GLFWTest, PoolEvent) { ASSERT_TRUE(window->PoolEvent()); }
 
-TEST_F(GLFWTest, Extensions) { ASSERT_GT(window->extensions().size(), 0); }
+TEST_F(GLFWTest, Extensions) { ASSERT_GT(window->Extensions().size(), 0); }
 } /* ae::test */
 
 #endif

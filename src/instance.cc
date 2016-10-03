@@ -90,7 +90,7 @@ void Instance::AddExtensions(
 		       std::end(extension));
 }
 
-std::vector<const char *> Instance::extensions() const noexcept {
+std::vector<const char *> Instance::Extensions() const noexcept {
     return extensions_;
 }
 
@@ -133,7 +133,7 @@ std::vector<const char *> Instance::MissingExtensions() const noexcept {
     return missing_extensions;
 }
 
-std::vector<const char *> Instance::validations() const noexcept {
+std::vector<const char *> Instance::Validations() const noexcept {
     return validations_;
 }
 

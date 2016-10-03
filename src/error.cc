@@ -20,7 +20,7 @@ namespace ae {
 Error::Error() {}
 Error::~Error() {}
 
-error::Flags Error::flags() const noexcept { return flags_; }
+error::Flags Error::Details() const noexcept { return flags_; }
 
 std::pair<std::string, error::Flags> Error::DiagnosticAll() noexcept {
     if (flags_.IsSuccess())

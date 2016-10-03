@@ -52,7 +52,7 @@ class Window {
     virtual bool PoolEvent() noexcept;
 
     /// Returns the extensions used
-    virtual std::vector<const char *> extensions() const noexcept;
+    virtual std::vector<const char *> Extensions() const noexcept;
 };
 
 } /* ae */

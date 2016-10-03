@@ -23,21 +23,21 @@ TEST_F(ErrorVulkanTest, String) {
 }
 
 TEST_F(ErrorVulkanTest, Result) {
-    vulkan_error->set_result(VK_SUCCESS);
-    ASSERT_EQ(vulkan_error->result(), VK_SUCCESS);
+    vulkan_error->SetResult(VK_SUCCESS);
+    ASSERT_EQ(vulkan_error->Result(), VK_SUCCESS);
 }
 
 TEST_F(ErrorVulkanTest, Instance) {
     auto instance = std::make_shared<Instance>();
-    vulkan_error->set_instance(instance);
-    ASSERT_EQ(vulkan_error->instance(), instance);
+    vulkan_error->SetInstance(instance);
+    ASSERT_EQ(vulkan_error->Instance(), instance);
 }
 
 TEST_F(ErrorVulkanTest, DiagnosticExtensions) {
     const std::vector<const char *> extensions = {"Buzz"};
 
     auto instance = std::make_shared<Instance>();
-    vulkan_error->set_instance(instance);
+    vulkan_error->SetInstance(instance);
 
     ASSERT_EQ(vulkan_error->DiagnosticExtensions().second.IsSuccess(), true);
 

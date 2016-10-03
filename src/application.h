@@ -41,19 +41,19 @@ constexpr int MakeVersion(const int major, const int minor, const int patch) {
 ///
 ///        protected:
 ///         ae::error::Vulkan> error_vulkan_;
+///         ae::window::DefaultWindow window_;
 ///         std::shared_ptr<ae::Instance> instance_{
 ///         std::make_shared<ae::Instance>()};
-///         ae::window::DefaultWindow window_;
 ///     };
 ///
 ///     DemoApp::DemoApp() : ae::Application() {
-///         set_name("Demo AquaEngine");
-///         set_version(1, 0, 0);
-///         instance_->AddExtensions(window_.extensions());
+///         SetName("Demo AquaEngine");
+///         SetVersion(1, 0, 0);
+///         instance_->AddExtensions(window_.Extensions());
 ///
-///         error_vulkan_.set_instance(instance_);
+///         error_vulkan_.SetInstance(instance_);
 ///         error_vulkan_.set_result(instance_->Create());
-///         if (error_vulkan_.flags.IsError()) throw error_vulkan_.Message();
+///         if (error_vulkan_.IsError()) throw error_vulkan_.Message();
 ///
 ///         while (window_.PoolEvent()) {
 ///         };
@@ -82,23 +82,22 @@ class Application {
     Application(Application &&) = delete;
 
     /// Returns a copy of the application name.
-    std::string name() const noexcept;
+    std::string Name() const noexcept;
 
     /// Set the application name.
-    void set_name(std::string) noexcept;
+    void SetName(std::string) noexcept;
 
     /// Returns a copy of the application versions.
-    int version() const noexcept;
+    int Version() const noexcept;
 
     /// Set the application version with integer.
-    void set_version(const int) noexcept;
+    void SetVersion(const int) noexcept;
 
     /// Helper to set the application version.
-    void set_version(const int major, const int minor,
-                     const int patch) noexcept;
+    void SetVersion(const int major, const int minor, const int patch) noexcept;
 
     /// Returns smart-pointer of Vulkan informations.
-    const std::shared_ptr<VkApplicationInfo> informations() const noexcept;
+    const std::shared_ptr<VkApplicationInfo> Informations() const noexcept;
 
    private:
     std::shared_ptr<VkApplicationInfo> vulkan_info_ =

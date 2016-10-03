@@ -21,28 +21,28 @@ Application::Application() {}
 
 Application::~Application() {}
 
-std::string Application::name() const noexcept {
+std::string Application::Name() const noexcept {
     return vulkan_info_->pApplicationName;
 }
 
-void Application::set_name(std::string name) noexcept {
+void Application::SetName(std::string name) noexcept {
     vulkan_info_->pApplicationName = name.c_str();
 }
 
-int Application::version() const noexcept {
+int Application::Version() const noexcept {
     return static_cast<int>(vulkan_info_->applicationVersion);
 }
 
-void Application::set_version(const int version) noexcept {
+void Application::SetVersion(const int version) noexcept {
     vulkan_info_->applicationVersion = static_cast<uint32_t>(version);
 }
 
-void Application::set_version(const int major, const int minor,
-                              const int patch) noexcept {
-    set_version(MakeVersion(major, minor, patch));
+void Application::SetVersion(const int major, const int minor,
+                             const int patch) noexcept {
+    SetVersion(MakeVersion(major, minor, patch));
 }
 
-const std::shared_ptr<VkApplicationInfo> Application::informations() const
+const std::shared_ptr<VkApplicationInfo> Application::Informations() const
     noexcept {
     return vulkan_info_;
 }

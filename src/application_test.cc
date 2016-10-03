@@ -19,14 +19,14 @@ class ApplicationTest : public ::testing::Test {
 };
 
 TEST_F(ApplicationTest, Name) {
-    application->set_name("Foo");
-    ASSERT_STREQ(application->name().c_str(), "Foo");
+    application->SetName("Foo");
+    ASSERT_STREQ(application->Name().c_str(), "Foo");
 }
 
 TEST_F(ApplicationTest, Version) {
-    application->set_version(1, 1, 1);
-    ASSERT_EQ(application->version(), MakeVersion(1, 1, 1));
+    application->SetVersion(1, 1, 1);
+    ASSERT_EQ(application->Version(), MakeVersion(1, 1, 1));
 }
 
-TEST_F(ApplicationTest, Informations) { application->informations(); }
+TEST_F(ApplicationTest, Informations) { application->Informations(); }
 } /* ae::test */

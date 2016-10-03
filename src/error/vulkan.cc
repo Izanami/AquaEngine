@@ -19,8 +19,8 @@
 namespace ae::error {
 
 Vulkan::Vulkan(VkResult result, std::shared_ptr<ae::Instance> instance) {
-    set_result(std::move(result));
-    set_instance(std::move(instance));
+    SetResult(std::move(result));
+    SetInstance(std::move(instance));
 }
 
 Vulkan::Vulkan() : Vulkan(VK_SUCCESS, nullptr) {}
@@ -51,9 +51,9 @@ Vulkan& Vulkan::operator=(const Vulkan& vulkan) {
 
 Vulkan::~Vulkan() {}
 
-VkResult Vulkan::result() const noexcept { return result_; }
+VkResult Vulkan::Result() const noexcept { return result_; }
 
-void Vulkan::set_result(const VkResult result) noexcept {
+void Vulkan::SetResult(const VkResult result) noexcept {
     result_ = std::move(result);
     if (result < 0)
         flags_.SetError();
@@ -61,11 +61,11 @@ void Vulkan::set_result(const VkResult result) noexcept {
         flags_.SetSuccess();
 }
 
-std::shared_ptr<ae::Instance> Vulkan::instance() const noexcept {
+std::shared_ptr<ae::Instance> Vulkan::Instance() const noexcept {
     return instance_;
 }
 
-void Vulkan::set_instance(std::shared_ptr<ae::Instance> instance) noexcept {
+void Vulkan::SetInstance(std::shared_ptr<ae::Instance> instance) noexcept {
     instance_ = std::move(instance);
 }
 
@@ -77,7 +77,7 @@ std::pair<std::string, Flags> Vulkan::DiagnosticAll() noexcept {
 }
 
 std::pair<std::string, Flags> Vulkan::DiagnosticExtensions() noexcept {
-    auto missing_extensions = instance()->MissingExtensions();
+    auto missing_extensions = Instance()->MissingExtensions();
     std::string error_message(ToString());
 
     if (missing_extensions.size() > 0) {

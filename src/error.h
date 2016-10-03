@@ -53,7 +53,7 @@ class Error {
     virtual ~Error();
 
     /// Returns the bits flags.
-    error::Flags flags() const noexcept;
+    error::Flags Details() const noexcept;
 
     /// \brief Analyse the errors for more details.
     ///
@@ -75,8 +75,6 @@ class Error {
     /// \return String
     virtual std::string Message() noexcept;
 
-   protected:
-    /// \brief Flags state.
     /// \sa ae::error::Flags
     error::Flags flags_;
 };

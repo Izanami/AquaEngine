@@ -20,7 +20,7 @@ namespace ae {
 
 bool Window::PoolEvent() noexcept { return false; }
 
-std::vector<const char *> Window::extensions() const noexcept {
+std::vector<const char *> Window::Extensions() const noexcept {
     return std::vector<const char *>();
 }
 

@@ -31,14 +31,14 @@ struct DemoApp : public ae::Application {
 };
 
 DemoApp::DemoApp() : ae::Application() {
-    set_name("Demo AquaEngine");
-    set_version(1, 0, 0);
+    SetName("Demo AquaEngine");
+    SetVersion(1, 0, 0);
 
-    instance_->AddExtensions(window_.extensions());
+    instance_->AddExtensions(window_.Extensions());
 
-    error_vulkan_.set_instance(instance_);
-    error_vulkan_.set_result(instance_->Create());
-    if (error_vulkan_.flags().IsError())
+    error_vulkan_.SetInstance(instance_);
+    error_vulkan_.SetResult(instance_->Create());
+    if (error_vulkan_.Details().IsError())
         throw error_vulkan_.DiagnosticAll().first;
 
     while (window_.PoolEvent()) {
