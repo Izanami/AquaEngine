@@ -34,7 +34,7 @@ namespace ae {
 ///
 ///     MyResult::MyResult(int code) {
 ///         if(code < 0)
-///             SetResult();
+///             SetError();
 ///     }
 ///
 ///     int main() {
