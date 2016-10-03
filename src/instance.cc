@@ -75,7 +75,7 @@ VkResult Instance::Create() noexcept {
 	static_cast<uint32_t>(validations_.size());
     vk_instance_informations_->ppEnabledLayerNames = validations_.data();
 #else
-#warning Disable validation layer. #22
+#pragma message("Disable validation layer. #22")
 #endif
 
     auto result = vkCreateInstance(vk_instance_informations_.get(), nullptr,
