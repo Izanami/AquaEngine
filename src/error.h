@@ -53,15 +53,7 @@ class Error : public error::Flags {
     virtual ~Error();
 
     /// \brief Analyse the errors for more details.
-    ///
-    /// Example :
-    ///
-    /// \code
-    ///     auto diagnostic = MyError(); // See ae::Error
-    ///     if(diagnostic.second.is_error())
-    ///     throw diagnostics.first
-    /// \endcode
-    virtual void DiagnosticAll() noexcept;
+    virtual void Diagnostic() noexcept;
 
     /// \brief Human-readble message.
     ///

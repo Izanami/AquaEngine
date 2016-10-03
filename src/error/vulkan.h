@@ -72,7 +72,7 @@ class Vulkan final : public ae::Error {
 
     /// \brief Analyse the errors for more details.
     /// \sa ae::Error::DiagnosticAll()
-    void DiagnosticAll() noexcept override;
+    void Diagnostic() noexcept override;
 
     /// \brief Analyse extensions vulkan.
     /// \sa ae::Error::DiagnisticAll()

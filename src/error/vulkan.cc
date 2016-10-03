@@ -71,19 +71,20 @@ void Vulkan::SetInstance(std::shared_ptr<ae::Instance> instance) noexcept {
     instance_ = std::move(instance);
 }
 
-void Vulkan::DiagnosticAll() noexcept { DiagnosticExtensions(); }
+void Vulkan::Diagnostic() noexcept {
+    if (VK_ERROR_EXTENSION_NOT_PRESENT) DiagnosticExtensions();
+}
 
 void Vulkan::DiagnosticExtensions() noexcept {
     auto missing_extensions = Instance()->MissingExtensions();
     if (missing_extensions.size() > 0) {
-        message_ = ToString(VK_ERROR_EXTENSION_NOT_PRESENT);
-        SetError();
-        result_ = VK_ERROR_EXTENSION_NOT_PRESENT;
-        message_ += " :";
+        SetResult(VK_ERROR_EXTENSION_NOT_PRESENT);
+        message_ += " [Missing extensions]";
         for (const auto& extension : missing_extensions) {
             message_ += " ";
             message_ += extension;
         }
+        return;
     }
 }
 

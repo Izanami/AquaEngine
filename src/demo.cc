@@ -39,7 +39,7 @@ DemoApp::DemoApp() : ae::Application() {
     error_vulkan_.SetInstance(instance_);
     error_vulkan_.SetResult(instance_->Create());
     if (error_vulkan_.IsError()) {
-        error_vulkan_.DiagnosticAll();
+        error_vulkan_.Diagnostic();
         throw error_vulkan_.Message();
     }
 

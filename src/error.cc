@@ -20,7 +20,7 @@ namespace ae {
 Error::Error() {}
 Error::~Error() {}
 
-void Error::DiagnosticAll() noexcept {}
+void Error::Diagnostic() noexcept {}
 
 std::string Error::Message() noexcept {
     if (IsSuccess())

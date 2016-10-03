@@ -44,7 +44,8 @@ TEST_F(ErrorVulkanTest, DiagnosticExtensions) {
     instance->AddExtensions(extensions);
     vulkan_error->DiagnosticExtensions();
     ASSERT_EQ(vulkan_error->Message(),
-              "Vulkan : A requested extension is not supported : Buzz");
+              "Vulkan : A requested extension is not supported [Missing "
+              "extensions] Buzz");
 
     ASSERT_EQ(vulkan_error->IsError(), true);
 }
