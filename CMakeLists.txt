@@ -14,18 +14,17 @@ option(BUILD_DOCUMENTATION "Create and install the HTML based API documentation 
 # Set flags
 if(DEVEL)
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall --pedantic -pedantic-errors -Wdocumentation --std=c++1z -Weverything -Werror -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -g -O0 -fsanitize=address -fsanitize=undefined -fsanitize=leak -fno-omit-frame-pointer")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fsanitize=address -fsanitize=undefined -fsanitize=leak -fno-omit-frame-pointer")
     else()
         message( FATAL_ERROR "In devel mode, you must use clang." )
     endif()
-else()
-    if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall --pedantic -pedantic-errors -Wdocumentation --std=c++1z -Weverything -Werror -Wno-c++98-compat -Wno-padded")
-
-    else()
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall --pedantic -pedantic-errors --std=c++1z -Wno-c++98-compat-pedantic")
-    endif()
 endif()
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wdocumentation -Weverything")
+endif()
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall --pedantic -pedantic-errors --std=c++1z -Wno-c++98-compat-pedantic -Werror -Wno-c++98-compat -Wno-padded")
 
 # Extra packages cmake
 set(CMAKE_MODULE_PATH
