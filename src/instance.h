@@ -20,7 +20,7 @@
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <vector>
-#include "error/vulkan.h"
+#include "result/vulkan.h"
 
 namespace ae {
 
@@ -56,7 +56,7 @@ class Instance {
     //! \}
 
     /// Create vulkan instance.
-    error::Vulkan Create() noexcept;
+    result::Vulkan Create() noexcept;
 
     /// Returns a copy extensions.
     std::vector<const char *> Extensions() const noexcept;

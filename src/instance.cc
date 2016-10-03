@@ -17,7 +17,7 @@
 #include "instance.h"
 #include <string.h>
 #include <algorithm>
-#include "error.h"
+#include "result.h"
 
 #if defined(__has_feature)
 #if __has_feature(address_sanitizer)
@@ -59,7 +59,7 @@ Instance &Instance::operator=(Instance &&instance) {
     return *this;
 }
 
-error::Vulkan Instance::Create() noexcept {
+result::Vulkan Instance::Create() noexcept {
     if (enable_default_validations) {
 	AddDefaultValidations();
     }
@@ -78,7 +78,7 @@ error::Vulkan Instance::Create() noexcept {
 #pragma message("Disable validation layer. #22")
 #endif
 
-    return error::Vulkan(vkCreateInstance(vk_instance_informations_.get(),
+    return result::Vulkan(vkCreateInstance(vk_instance_informations_.get(),
 					  nullptr, vk_instance_.get()));
 }
 

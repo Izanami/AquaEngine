@@ -1,4 +1,4 @@
-#include "error.h"
+#include "result.h"
 #include <gtest/gtest.h>
 #include <memory>
 
@@ -23,16 +23,16 @@ class ErrorTest : public ::testing::Test {
    protected:
     /// Set fixture
     virtual void SetUp() {
-        error_success = std::make_unique<MyError>(1);
-        error_error = std::make_unique<MyError>(-1);
+        result_success = std::make_unique<MyError>(1);
+        result_result = std::make_unique<MyError>(-1);
     }
 
     /// Fixture when success.
-    std::unique_ptr<MyError> error_success = nullptr;
+    std::unique_ptr<MyError> result_success = nullptr;
 
     /// Fixture when failed.
-    std::unique_ptr<MyError> error_error = nullptr;
+    std::unique_ptr<MyError> result_result = nullptr;
 };
 
-TEST_F(ErrorTest, ToString) { ASSERT_EQ(error_success->ToString(), "Success"); }
+TEST_F(ErrorTest, ToString) { ASSERT_EQ(result_success->ToString(), "Success"); }
 } /* ae::test */

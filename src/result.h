@@ -17,13 +17,13 @@
 #ifndef AE_ERROR_H_
 #define AE_ERROR_H_
 
-#include "error/flags.h"
+#include "result/flags.h"
 
 namespace ae {
 
-/// \brief Handle errors
+/// \brief Handle results
 ///
-/// \sa ae::error::Flags
+/// \sa ae::result::Flags
 ///
 /// Example :
 /// \code
@@ -38,12 +38,12 @@ namespace ae {
 ///     }
 ///
 ///     int main() {
-///         MyError error(-1);
+///         MyError result(-1);
 ///
-///         if (error.IsError()) throw error.Message();
+///         if (result.IsError()) throw result.Message();
 ///     }
 /// \endcode
-class Error : public error::Flags {
+class Error : public result::Flags {
    public:
     Error();
     Error(const Error &) = delete;

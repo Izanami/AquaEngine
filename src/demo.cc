@@ -36,7 +36,7 @@ DemoApp::DemoApp() : ae::Application() {
     instance_->AddExtensions(window_.Extensions());
 
     auto result = instance_->Create();
-    if (error.IsError()) throw result.ToString();
+    if (result.IsError()) throw result.ToString();
 
     while (window_.PoolEvent()) {
     };

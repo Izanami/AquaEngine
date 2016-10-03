@@ -20,11 +20,11 @@
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <string>
-#include "../error.h"
+#include "../result.h"
 
-namespace ae::error {
+namespace ae::result {
 
-/// \brief Handle vulkan errors.
+/// \brief Handle vulkan results.
 ///
 /// \sa ae::Error
 ///
@@ -32,10 +32,10 @@ namespace ae::error {
 ///
 /// \code
 ///    auto instance = std::make_shared<ae::Instance>();
-///    ae::Error::Vulkan error(instance->Create());
+///    ae::Error::Vulkan result(instance->Create());
 ///
-///    if(error.IsError())
-///        throw error.Message();
+///    if(result.IsError())
+///        throw result.Message();
 /// \endcode
 class Vulkan final : public ae::Error {
    public:
@@ -166,16 +166,16 @@ class Vulkan final : public ae::Error {
                 break;
         }
 
-        return u8"Vulkan : Unknow error";
+        return u8"Vulkan : Unknow result";
     }
 
    private:
-    /// The code error.
+    /// The code result.
     VkResult result_ = VK_SUCCESS;
 
     /// The message generated.
     std::string message_ = ToString(VK_SUCCESS);
 };
-} /* ae::error */
+} /* ae::result */
 
 #endif /* AE_ERROR_H8 */

@@ -18,17 +18,17 @@
 #define AE_ERROR_FLAGS_H_
 
 #include <bitset>
-namespace ae::error {
+namespace ae::result {
 
-/// Number of bits in ae::error::Flags.
+/// Number of bits in ae::result::Flags.
 constexpr int CodeFlagsMax = 8;
 
-/// \brief Bit state flags of the error.
+/// \brief Bit state flags of the result.
 ///
 /// Example :
 ///
 /// \code
-///    ae::error::Flags flags;
+///    ae::result::Flags flags;
 ///    if(random_number % 2)
 ///        flags.SetError();
 /// \endcode
@@ -37,7 +37,7 @@ struct Flags : public std::bitset<CodeFlagsMax> {
     /// Bits positions in std::bitset.
     enum class Code { kSuccess = 0, kVerbose = 1 };
 
-    /// Base class of ae::error::Flags.
+    /// Base class of ae::result::Flags.
     using base = std::bitset<CodeFlagsMax>;
 
     Flags();
@@ -78,6 +78,6 @@ struct Flags : public std::bitset<CodeFlagsMax> {
     bool IsVerbose() const noexcept;
 };
 
-} /* ae::error */
+} /* ae::result */
 
 #endif /* AE_ERROR_FLAGS_H_ */

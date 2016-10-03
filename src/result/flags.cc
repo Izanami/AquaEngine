@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "flags.h"
-namespace ae::error {
+namespace ae::result {
 Flags::Flags() { SetSuccess(); }
 Flags::~Flags() {}
 
@@ -54,4 +54,4 @@ bool Flags::IsVerbose() const noexcept {
     return test(static_cast<int>(Code::kVerbose));
 }
 
-} /* ae::error */
+} /* ae::result */

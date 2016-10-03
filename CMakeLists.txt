@@ -43,7 +43,7 @@ endif()
 ###
 # MAIN
 ###
-add_library(ae src/window.cc src/window/glfw.cc src/application.cc src/instance.cc src/error.cc src/error/flags.cc src/error/vulkan.cc)
+add_library(ae src/window.cc src/window/glfw.cc src/application.cc src/instance.cc src/result.cc src/result/flags.cc src/result/vulkan.cc)
 target_link_libraries(ae vulkan ${GLFW_LIBRARIES})
 
 ###
@@ -65,7 +65,7 @@ if(GTEST_FOUND)
     enable_testing()
     include_directories(${GTEST_INCLUDE_DIRS})
 
-    add_executable(ae-test src/test.cc src/window_test.cc src/window/glfw_test.cc src/application_test.cc src/instance_test.cc src/error_test.cc src/error/flags_test.cc src/error/vulkan_test.cc)
+    add_executable(ae-test src/test.cc src/window_test.cc src/window/glfw_test.cc src/application_test.cc src/instance_test.cc src/result_test.cc src/result/flags_test.cc src/result/vulkan_test.cc)
     target_link_libraries(ae-test ae ${CMAKE_THREAD_LIBS_INIT} ${GTEST_BOTH_LIBRARIES})
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
@@ -80,7 +80,7 @@ endif()
 ###
 if(BUILD_DOCUMENTATION)
     if(NOT DOXYGEN_FOUND)
-        message(FATAL_ERROR "Doxygen is needed to build the documentation.")
+        message(FATAL_result "Doxygen is needed to build the documentation.")
     endif()
 
     set(doxyfile_in ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)

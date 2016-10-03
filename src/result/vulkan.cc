@@ -16,7 +16,7 @@
 
 #include "vulkan.h"
 
-namespace ae::error {
+namespace ae::result {
 
 Vulkan::Vulkan() {}
 
@@ -54,4 +54,4 @@ std::string Vulkan::ToString() noexcept {
     return std::string(ToString(result_));
 }
 
-} /* ae::error */
+} /* ae::result */
