@@ -34,7 +34,7 @@ namespace ae {
 ///
 ///     MyError::MyError(int code) {
 ///         if(code < 0)
-///             flags_.set_error();
+///             flags_.SetError();
 ///     }
 ///
 ///     int main() {
